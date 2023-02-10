@@ -12,9 +12,9 @@ export const CartLogin = () => {
           <FaShoppingCart className='cart-icon' /> <CartNumber>12</CartNumber>
         </Cart>
       </CartWrapper>
-      <div>
-        Login <FaUserPlus />
-      </div>
+      <CartWrapper>
+        Login <FaUserPlus className='cart-icon' />
+      </CartWrapper>
     </Wrapper>
   );
 };
@@ -29,6 +29,8 @@ const Wrapper = styled.div`
     height: 1.6rem;
     margin-left: 5px;
     color: #102a42;
+
+    margin-top: 4px;
   }
 `;
 

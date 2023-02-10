@@ -1,7 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+import Featured from '../components/Featured';
+import Hero from '../components/Hero';
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <Hero />
+      <Featured />
+    </>
+  );
 };
 
 export default Home;
