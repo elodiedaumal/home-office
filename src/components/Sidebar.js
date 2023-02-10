@@ -1,86 +1,78 @@
-import React from 'react'
-import logo from '../assets/logo.svg'
-import { Link } from 'react-router-dom'
-import { useProductsContext } from '../context/products_context'
-import { FaTimes } from 'react-icons/fa'
-import { links } from '../utils/constants'
-import styled from 'styled-components'
-import CartButtons from './CartButtons'
-import { useUserContext } from '../context/user_context'
+import React from 'react';
+import { useGlobalContext } from '../context';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import {
+  FaBars,
+  FaShoppingCart,
+  FaUserCheck,
+  FaUserPlus,
+  FaTimes,
+} from 'react-icons/fa';
+import links from '../links';
+import { CartLogin } from './CartLogin';
 
 const Sidebar = () => {
-  return <h4>sidebar</h4>
-}
+  const { isSidebarOpen } = useGlobalContext();
 
-const SidebarContainer = styled.div`
-  text-align: center;
-  .sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-  }
-  .close-btn {
-    font-size: 2rem;
-    background: transparent;
-    border-color: transparent;
-    color: var(--clr-primary-5);
-    transition: var(--transition);
-    cursor: pointer;
-    color: var(--clr-red-dark);
-    margin-top: 0.2rem;
-  }
-  .close-btn:hover {
-    color: var(--clr-red-light);
-  }
-  .logo {
-    justify-self: center;
-    height: 45px;
-  }
-  .links {
-    margin-bottom: 2rem;
-  }
-  .links a {
-    display: block;
-    text-align: left;
-    font-size: 1rem;
-    text-transform: capitalize;
-    padding: 1rem 1.5rem;
-    color: var(--clr-grey-3);
-    transition: var(--transition);
-    letter-spacing: var(--spacing);
-  }
+  return (
+    <SidebarWrapper>
+      <div className={!isSidebarOpen ? 'hidden' : 'sidebar'}>
+        <ul>
+          <NavLinks>
+            {links.map((link) => {
+              const { id, text, url } = link;
+              return (
+                <Link to={url} key={id}>
+                  {text}
+                </Link>
+              );
+            })}
+          </NavLinks>
+        </ul>
 
-  .links a:hover {
-    padding: 1rem 1.5rem;
-    padding-left: 2rem;
-    background: var(--clr-grey-10);
-    color: var(--clr-grey-2);
-  }
+        <Cart>
+          <CartLogin />
+        </Cart>
+      </div>
+    </SidebarWrapper>
+  );
+};
 
+export default Sidebar;
+
+const SidebarWrapper = styled.aside`
   .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
+    background-color: #fff;
+    height: 100vh;
     width: 100%;
-    height: 100%;
-    background: var(--clr-white);
-    transition: var(--transition);
-    transform: translate(-100%);
-    z-index: -1;
+    display: flex;
+    flex-direction: column;
   }
-  .show-sidebar {
-    transform: translate(0);
-    z-index: 999;
+
+  .hidden {
+    display: none;
   }
-  .cart-btn-wrapper {
-    margin: 2rem auto;
-  }
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 700px) {
     .sidebar {
       display: none;
     }
   }
-`
+`;
 
-export default Sidebar
+const NavLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  text-align: left;
+`;
+
+const Cart = styled.div`
+  display: flex;
+  align-self: center;
+  margin: 2rem auto;
+`;

@@ -1,82 +1,113 @@
-import React from 'react'
-import styled from 'styled-components'
-import logo from '../assets/logo.svg'
-import { FaBars } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import { links } from '../utils/constants'
-import CartButtons from './CartButtons'
-import { useProductsContext } from '../context/products_context'
-import { useUserContext } from '../context/user_context'
+import { React, useState } from 'react';
+import { useGlobalContext } from '../context';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import {
+  FaBars,
+  FaShoppingCart,
+  FaUserCheck,
+  FaUserPlus,
+  FaTimes,
+} from 'react-icons/fa';
+import links from '../links';
+import { CartLogin } from './CartLogin';
 
-const Nav = () => {
-  return <h4>navbar</h4>
-}
+const Navbar = () => {
+  const { handleClick, isSidebarOpen } = useGlobalContext();
+  return (
+    <Nav>
+      <Logo>
+        Home<span className='logo'>Office</span>
+      </Logo>
 
-const NavContainer = styled.nav`
-  height: 5rem;
+      <ul className={!isSidebarOpen ? '' : ''}>
+        <NavLinks>
+          {links.map((link) => {
+            const { id, text, url } = link;
+            return (
+              <Link to={url} key={id}>
+                {text}
+              </Link>
+            );
+          })}
+        </NavLinks>
+      </ul>
+      <Cart>
+        <CartLogin />
+      </Cart>
+      <MenuIcon type='button' onClick={handleClick}>
+        {!isSidebarOpen ? (
+          <FaBars className='icon-open' />
+        ) : (
+          <FaTimes className='icon-close' />
+        )}
+      </MenuIcon>
+    </Nav>
+  );
+};
+
+export default Navbar;
+
+const Nav = styled.nav`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-
-  .nav-center {
-    width: 90vw;
-    margin: 0 auto;
-    max-width: var(--max-width);
+  padding: 0px 20px;
+  max-width: 1240px;
+  height:5rem;
+  margin 0 auto
+ 
   }
-  .nav-header {
+`;
+
+const MenuIcon = styled.button`
+  border: none;
+  background: none;
+  color: #ac7a5f;
+  cursor: pointer;
+  .icon-open {
+    height: 32px;
+    width: 35px;
+  }
+  .icon-close {
+    height: 32px;
+    width: 35px;
+    color: #bb2525;
+    z-index: 999;
+  }
+  @media (min-width: 700px) {
+    display: none;
+  }
+`;
+
+const NavLinks = styled.li`
+   display: none;
+  @media (min-width: 700px) {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    img {
-      width: 175px;
-      margin-left: -15px;
-    }
+  justify-content: space-between;
+  align items:center;
+    column-gap: 2rem;
+    color:#324d67;
+    text-transform:capitalize;
+    letter-spacing:1px;
+    font-size:1rem
+    
   }
-  .nav-toggle {
-    background: transparent;
-    border: transparent;
-    color: var(--clr-primary-5);
-    cursor: pointer;
-    svg {
-      font-size: 2rem;
-    }
-  }
-  .nav-links {
-    display: none;
-  }
-  .cart-btn-wrapper {
-    display: none;
-  }
-  @media (min-width: 992px) {
-    .nav-toggle {
-      display: none;
-    }
-    .nav-center {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-    }
-    .nav-links {
-      display: flex;
-      justify-content: center;
-      li {
-        margin: 0 0.5rem;
-      }
-      a {
-        color: var(--clr-grey-3);
-        font-size: 1rem;
-        text-transform: capitalize;
-        letter-spacing: var(--spacing);
-        padding: 0.5rem;
-        &:hover {
-          border-bottom: 2px solid var(--clr-primary-7);
-        }
-      }
-    }
-    .cart-btn-wrapper {
-      display: grid;
-    }
-  }
-`
+`;
 
-export default Nav
+const Logo = styled.p`
+  font-weight: bold;
+  color: black;
+  font-size: 2rem;
+  font-family: 'Marck Script', cursive;
+  text-shadow: 1px 1px 1px gray;
+  .logo {
+    color: #ac7a5f;
+  }
+`;
+
+const Cart = styled.div`
+ @media (max-width: 700px) {
+      display: none;
+  
+    `;

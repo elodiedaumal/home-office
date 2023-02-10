@@ -1,16 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar, Sidebar, Footer } from './components';
-import {
-  Home,
-  About,
-  Cart,
-  Checkout,
-  Error,
-  Products,
-  SingleProduct,
-  Private,
-} from './pages';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Cart from './Pages/Cart';
+import Products from './Pages/Products';
+import SingleProduct from './Pages/SingleProduct';
+import Checkout from './Pages/Checkout';
+import Error from './Pages/Error';
 
 function App() {
   return (
