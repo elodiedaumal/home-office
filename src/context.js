@@ -7,7 +7,7 @@ const products_url = 'https://course-api.com/react-store-products';
 
 const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {

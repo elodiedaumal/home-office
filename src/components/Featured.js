@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 
@@ -17,17 +18,23 @@ const Featured = () => {
       <Products>
         {products
           .filter((product) => product.featured)
+          .slice(0, 3)
           .map((filteredProduct) => (
-            <Grid>
-              <Img src={filteredProduct.image} alt={filteredProduct.name} />
+            <Link to='/'>
+              <Grid>
+                <Img src={filteredProduct.image} alt={filteredProduct.name} />
 
-              <ProductInfo>
-                <p>{filteredProduct.name}</p>
-                <p>${filteredProduct.price / 100}</p>
-              </ProductInfo>
-            </Grid>
+                <ProductInfo>
+                  <p>{filteredProduct.name}</p>
+                  <Price>${filteredProduct.price / 100}</Price>
+                </ProductInfo>
+              </Grid>
+            </Link>
           ))}
       </Products>
+      <Link>
+        <Button className='btn'>ALL PRODUCTS</Button>
+      </Link>
     </Section>
   );
 };
@@ -37,26 +44,29 @@ export default Featured;
 const Section = styled.section`
   background-color: #f1f5f8;
   padding: 5rem 0;
+  text-align: center;
 `;
 
 const Header = styled.header`
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #102a42;
-   @ media(max-width:1000px){
-    font-size: 2rem;
+  @media (min-width: 1000px) {
+    font-size: 2.3rem;
   }
 `;
 
 const Underline = styled.div`
   background: #ab7a5f;
-  height: 4px;
+  height: 5px;
   width: 7rem;
   margin: 0.5rem auto;
+  z-index: 99;
 `;
 const Products = styled.div`
   display: grid;
   gap: 2.5rem;
+
   grid-template-columns: 1fr;
   grid-auto-rows: minmax(50px, auto);
   width: 90vw;
@@ -73,8 +83,23 @@ const Grid = styled.article`
 const ProductInfo = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 1rem 0.2rem 0.2rem 0.2rem;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  font-size: 20px;
 `;
 
 const Img = styled.img`
-  max-width: 100vw;
+  width: 100%;
+  object-fit: cover;
+  height: 225px;
+`;
+
+const Price = styled.p`
+  color: #ab7a5f;
+`;
+
+const Button = styled.button`
+  font-size: 1.2rem;
+  width: 15rem;
 `;
