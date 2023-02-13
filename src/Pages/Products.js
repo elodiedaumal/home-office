@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,13 @@ import { BsFillGridFill } from 'react-icons/bs';
 
 const Products = () => {
   const { products, loading } = useGlobalContext();
+  const [theme, setTheme] = useState('grid');
+  const toggleGrid = () => {
+    setTheme('grid');
+  };
+  const toggleList = () => {
+    setTheme('list');
+  };
 
   if (loading) {
     return <div>loading...</div>;
@@ -43,13 +50,13 @@ const Products = () => {
           <p>Search</p>
           <p>Search</p>
         </Filter>
-        <Section>
+        <Section className={theme}>
           <TopSort>
             <div>
-              <Button>
+              <Button onClick={toggleGrid}>
                 <BsFillGridFill />
               </Button>
-              <Button>
+              <Button onClick={toggleList}>
                 <FaBars />
               </Button>
             </div>
@@ -62,15 +69,37 @@ const Products = () => {
               </p>
             </SortBy>
           </TopSort>
+
           {products.map((filteredProduct) => (
             <>
               <Link to='/'>
-                <Grid>
-                  <Img src={filteredProduct.image} alt={filteredProduct.name} />
+                <Grid className={theme}>
+                  <Img
+                    className={theme}
+                    src={filteredProduct.image}
+                    alt={filteredProduct.name}
+                  />
 
-                  <ProductInfo>
-                    <p>{filteredProduct.name}</p>
-                    <Price>${filteredProduct.price / 100}</Price>
+                  <ProductInfo className={theme}>
+                    <ProductName className={theme}>
+                      {filteredProduct.name}
+                    </ProductName>
+                    <Price className={theme}>
+                      ${filteredProduct.price / 100}
+                    </Price>
+
+                    {theme !== 'grid' ? (
+                      <p>{filteredProduct.description.substring(0, 150)}...</p>
+                    ) : (
+                      ''
+                    )}
+                    {theme !== 'grid' ? (
+                      <Link>
+                        <ButtonList className='btn '>DETAILS</ButtonList>
+                      </Link>
+                    ) : (
+                      ''
+                    )}
                   </ProductInfo>
                 </Grid>
               </Link>
@@ -106,7 +135,7 @@ const Container = styled.div`
   max-width: 1240px;
   margin: 4rem auto;
   @media (min-width: 800px) {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 150px 1fr;
   }
 `;
 const Filter = styled.aside`
@@ -120,8 +149,17 @@ const Section = styled.section`
   width: 100%;
   display: grid;
   gap: 2rem;
+
   @media (min-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
+
+    &.list {
+      grid-template-columns: 1fr;
+      row-gap: 3rem;
+    }
+  }
+  @media (min-width: 1150px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
@@ -132,6 +170,13 @@ const ProductInfo = styled.div`
   text-transform: capitalize;
   letter-spacing: 2px;
   font-size: 20px;
+  &.list {
+    flex-direction: column;
+    padding: 0;
+    font-size: 1rem;
+    letter-spacing: 0px;
+    line-height: 1.5;
+  }
 `;
 
 const Img = styled.img`
@@ -139,14 +184,35 @@ const Img = styled.img`
   object-fit: cover;
   height: 175px;
   border-radius: 5px;
+  &.list {
+    width: 300px;
+    height: 200px;
+  }
 `;
 
-const Price = styled.p`
+const Price = styled.h5`
   color: #ab7a5f;
+  &.list {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+`;
+
+const ProductName = styled.h5`
+  &.list {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
 `;
 
 const Grid = styled.article`
   display: block;
+  &.list {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 2rem;
+  }
 `;
 
 const TopSort = styled.div`
@@ -156,6 +222,7 @@ const TopSort = styled.div`
   align-items: center;
   row-gap: 1rem;
   grid-template-columns: 1fr;
+
   @media (min-width: 500px) {
     grid-template-columns: auto auto 1fr auto;
   }
@@ -181,6 +248,10 @@ const Line = styled.div`
 const SortBy = styled.div`
   display: flex;
   column-gap: 1rem;
-
   width: 100%;
+`;
+
+const ButtonList = styled.button`
+  width: 25%;
+  margin-top: 15px;
 `;
