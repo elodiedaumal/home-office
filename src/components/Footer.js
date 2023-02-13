@@ -15,8 +15,7 @@ export default Footer;
 
 const Section = styled.section`
   background-color: #222222;
-  height: 5rem;
-  padding: 0 2rem;
+  padding: 1.5rem;
   text-align: center;
   color: #fff;
   letter-spacing: 1px;

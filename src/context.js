@@ -14,6 +14,10 @@ const AppProvider = ({ children }) => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   async function getFeatured() {
     setLoading(true);
     try {
@@ -39,6 +43,7 @@ const AppProvider = ({ children }) => {
         getFeatured,
         products,
         loading,
+        closeSidebar,
       }}
     >
       {children}

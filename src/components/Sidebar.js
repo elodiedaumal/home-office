@@ -13,13 +13,13 @@ import links from '../links';
 import { CartLogin } from './CartLogin';
 
 const Sidebar = () => {
-  const { isSidebarOpen } = useGlobalContext();
+  const { isSidebarOpen, closeSidebar } = useGlobalContext();
 
   return (
     <SidebarWrapper>
       <div className={!isSidebarOpen ? 'hidden' : 'sidebar'}>
         <ul>
-          <NavLinks>
+          <NavLinks onClick={closeSidebar}>
             {links.map((link) => {
               const { id, text, url } = link;
               return (
