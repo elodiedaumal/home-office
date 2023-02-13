@@ -158,6 +158,7 @@ const Section = styled.section`
       row-gap: 3rem;
     }
   }
+
   @media (min-width: 1150px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -210,8 +211,14 @@ const Grid = styled.article`
   display: block;
   &.list {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1rem 2rem;
+  }
+  @media (min-width: 1000px) {
+    &.list {
+      row-gap: 3rem;
+      grid-template-columns: repeat(2, auto);
+    }
   }
 `;
 
