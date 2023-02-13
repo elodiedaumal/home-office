@@ -6,9 +6,9 @@ const About = () => {
   return (
     <>
       <Header>
-        <h1>
+        <HeaderText>
           <Title>Home</Title> / About
-        </h1>
+        </HeaderText>
       </Header>
       <Container>
         <Image />
@@ -44,6 +44,11 @@ const Title = styled.span`
   color: #795744;
 `;
 
+const HeaderText = styled.h1`
+  margin: 0 auto;
+  max-width: 1240px;
+`;
+
 const Image = styled.div`
   background-image: url(${Img});
   height: 500px;
@@ -58,6 +63,8 @@ const Container = styled.div`
   gap: 4rem ;
   @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
+      max-width: 1240px;
+       padding: 0;
 `;
 
 const Underline = styled.div`

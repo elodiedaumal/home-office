@@ -16,9 +16,11 @@ const Navbar = () => {
   const { handleClick, isSidebarOpen } = useGlobalContext();
   return (
     <Nav>
-      <Logo>
-        Home<span className='logo'>Office</span>
-      </Logo>
+      <Link to='/'>
+        <Logo>
+          Home<span className='logo'>Office</span>
+        </Logo>
+      </Link>
 
       <ul className={!isSidebarOpen ? '' : ''}>
         <NavLinks>

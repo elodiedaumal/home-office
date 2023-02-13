@@ -5,12 +5,14 @@ import styled from 'styled-components';
 const Custom = () => {
   return (
     <Section>
-      <Title>Custom Furniture Built Only For You</Title>
-      <Text>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe dolorum
-        debitis consectetur reprehenderit non aliquam voluptates dolore aut vero
-        consequuntur.
-      </Text>
+      <Header>
+        <Title>Custom Furniture Built Only For You</Title>
+        <Text>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe dolorum
+          debitis consectetur reprehenderit non aliquam voluptates dolore aut
+          vero consequuntur.
+        </Text>
+      </Header>
       <Container>
         <Article>
           <Icon>
@@ -59,12 +61,16 @@ export default Custom;
 
 const Section = styled.section`
   background-color: #eaded7;
-  margin: 0 auto;
   padding: 5rem 2rem;
   color: #453227;
 `;
+const Header = styled.header`
+  margin: 0 auto;
+  max-width: 1240px;
+`;
 const Container = styled.div`
   display: grid;
+  margin: 0 auto;
   gap: 2.5rem;
   grid-template-columns: 1fr;
   max-width: 1240px;
@@ -84,6 +90,7 @@ const Title = styled.h3`
 const Text = styled.p`
   font-size: 1rem;
   line-height: 1.8;
+
   margin-bottom: 3rem;
 `;
 const Article = styled.article`

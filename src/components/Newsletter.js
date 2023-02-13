@@ -53,18 +53,21 @@ const Form = styled.form`
   display: grid;
   height: 2.5rem;
   grid-template-columns: 1fr auto;
+  border: 2px solid black;
+  border-radius: 10px;
 `;
 const Input = styled.input`
-  border: 2px solid black;
-  border-radius: 5px 0 0 5px;
   padding: 0 1rem;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  border-right: 2px solid black;
 `;
 
 const Button = styled.button`
   color: black;
   background-color: #ab7a5f;
   border-radius: 0 5px 5px 0;
-  border: 2px solid black;
+  border: none;
   border-left: none;
   padding: 0 1rem;
   letter-spacing: 2px;
