@@ -20,7 +20,7 @@ const Featured = () => {
           .filter((product) => product.featured)
           .slice(0, 3)
           .map((filteredProduct) => (
-            <Link to='/'>
+            <Link to={`/products/${filteredProduct.name}`}>
               <Grid>
                 <Img src={filteredProduct.image} alt={filteredProduct.name} />
 

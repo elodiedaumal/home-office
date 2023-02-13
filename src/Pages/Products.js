@@ -53,10 +53,16 @@ const Products = () => {
         <Section className={theme}>
           <TopSort>
             <div>
-              <Button onClick={toggleGrid}>
+              <Button
+                className={theme === 'grid' ? 'active' : ''}
+                onClick={toggleGrid}
+              >
                 <BsFillGridFill />
               </Button>
-              <Button onClick={toggleList}>
+              <Button
+                className={theme === 'list' ? 'active' : ''}
+                onClick={toggleList}
+              >
                 <FaBars />
               </Button>
             </div>
@@ -72,7 +78,9 @@ const Products = () => {
 
           {products.map((filteredProduct) => (
             <>
-              <Link to='/'>
+              <Link
+                to={theme === 'grid' ? `/products/${filteredProduct.name}` : ''}
+              >
                 <Grid className={theme}>
                   <Img
                     className={theme}
@@ -94,7 +102,7 @@ const Products = () => {
                       ''
                     )}
                     {theme !== 'grid' ? (
-                      <Link>
+                      <Link to={`/products/${filteredProduct.name}`}>
                         <ButtonList className='btn '>DETAILS</ButtonList>
                       </Link>
                     ) : (
@@ -135,7 +143,7 @@ const Container = styled.div`
   max-width: 1240px;
   margin: 4rem auto;
   @media (min-width: 800px) {
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 200px 1fr;
   }
 `;
 const Filter = styled.aside`
@@ -204,6 +212,7 @@ const ProductName = styled.h5`
   &.list {
     font-size: 1.5rem;
     letter-spacing: 2px;
+    color: #102a42;
   }
 `;
 
@@ -236,13 +245,17 @@ const TopSort = styled.div`
 `;
 const Button = styled.button`
   background: none;
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.5rem;
-  padding: 1px;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  padding: 2px;
   border-radius: 5px;
-  margin-right: 0.8rem;
+  margin-right: 0.5rem;
   cursor: pointer;
+  &.active {
+    background-color: black;
+    color: gray;
+  }
 `;
 
 const Line = styled.div`
