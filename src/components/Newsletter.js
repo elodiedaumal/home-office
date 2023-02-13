@@ -30,6 +30,7 @@ const Section = styled.section`
   align-items: center;
   @media (min-width: 1000px) {
     grid-template-columns: 1fr 1fr;
+    padding: 0 1rem;
   }
 `;
 const Title = styled.h4`
@@ -49,7 +50,6 @@ const Text = styled.p`
 `;
 const Form = styled.form`
   max-width: 500px;
-
   display: grid;
   height: 2.5rem;
   grid-template-columns: 1fr auto;
@@ -69,4 +69,8 @@ const Button = styled.button`
   padding: 0 1rem;
   letter-spacing: 2px;
   font-size: 1rem;
+  @media (max-width: 400px) {
+    font-size: 0.7rem;
+    padding: 0 0.7rem;
+  }
 `;

@@ -20,6 +20,7 @@ const Section = styled.section`
   text-align: center;
   color: #fff;
   letter-spacing: 1px;
+  padding: 2rem;
 `;
 const Logo = styled.span`
   color: #ab7a5f;
