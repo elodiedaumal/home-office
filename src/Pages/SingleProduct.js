@@ -18,6 +18,7 @@ const single_product_url = `https://course-api.com/react-store-single-product?id
 const SingleProduct = () => {
   const { setLoading } = useGlobalContext();
   const [singleProduct, setSingleProduct] = useState([]);
+  const [bgcolor, setBgcolor] = useState([]);
   let { id } = useParams();
 
   async function getSingleProduct() {
@@ -25,7 +26,7 @@ const SingleProduct = () => {
     try {
       const response = await axios.get(`${single_product_url}${id}`);
       const singleProduct = response.data;
-
+      setBgcolor(singleProduct.colors);
       setSingleProduct(singleProduct);
     } catch (error) {
       console.error(error);
@@ -37,8 +38,6 @@ const SingleProduct = () => {
     getSingleProduct();
   }, []);
 
-  console.log(id);
-
   return (
     <>
       <PageHeader />
@@ -47,55 +46,55 @@ const SingleProduct = () => {
           Back to products
         </Link>
         <div>Pictures</div>
-        <div>
-          <h1>{singleProduct.name}</h1>
+        <SectionInfo>
           <div>
-            <span>
-              <FaStar />
-            </span>
-            <span>
-              <FaStar />
-            </span>
-            <span>
-              <FaStar />
-            </span>
-            <span>
-              <FaStar />
-            </span>
-            <span>
-              <FaStar />
-            </span>{' '}
-            ( {singleProduct.reviews} customers reviews )
+            <Name>{singleProduct.name}</Name>
+            <div>
+              <span>
+                <FaStar />
+              </span>
+              <span>
+                <FaStar />
+              </span>
+              <span>
+                <FaStar />
+              </span>
+              <span>
+                <FaStar />
+              </span>
+              <span>
+                <FaStar />
+              </span>{' '}
+              ( {singleProduct.reviews} customers reviews )
+            </div>
+            <Price>${singleProduct.price / 100}</Price>
           </div>
-          <p>${singleProduct.price / 100}</p>
           <p>{singleProduct.description}</p>
-          <div>
-            <p>Availability:</p>
+          <Info>
+            <InfoText>Availability:</InfoText>
             {singleProduct.stock > 0 ? (
               <p>{singleProduct.stock} in Stock</p>
             ) : (
               <p>Out of Stock</p>
             )}
-          </div>
-          <div>
-            <p>Brands:</p>
-
+          </Info>
+          <Info>
+            <InfoText>Brands:</InfoText>
             <p>{singleProduct.company}</p>
-          </div>
-          <div>
-            <p>Reference:</p>
-
+          </Info>
+          <Info>
+            <InfoText>Reference:</InfoText>
             <p>{singleProduct.id}</p>
-          </div>
-        </div>
+          </Info>
+        </SectionInfo>
         <Line></Line>
         <div>
           <ColorSection>
-            <p>Colors:</p>{' '}
+            <InfoText>Colors:</InfoText>{' '}
             <ColorContainer>
-              {singleProduct.colors.map((color, index) => {
+              {bgcolor.map((color, index) => {
                 const colors = `${color}`;
-                console.log(colors);
+
                 return (
                   <ColorRound key={index} backgroundColor={colors}></ColorRound>
                 );
@@ -130,15 +129,46 @@ export default SingleProduct;
 
 const Section = styled.section`
   display: grid;
-  gap: 2.5rem;
+  gap: 2rem;
   grid-template-columns: 1fr;
-  grid-auto-rows: minmax(50px, auto);
   width: 90vw;
   max-width: 1240px;
   margin: 5rem auto;
+  color: #324d67;
+  line-height: 2;
+  font-size: 1rem;
   @media (min-width: 800px) {
     grid-template-columns: 200px 1fr;
   }
+`;
+const SectionInfo = styled.section`
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+`;
+
+const Name = styled.h1`
+ 
+    color: #102a42;
+font-size: 2rem;
+text-transform:capitalize;
+letter-spacing:1px
+  }
+`;
+const Price = styled.h5`
+ color: #ab7a5f;
+  font-size: 1rem;
+  }
+`;
+
+const Info = styled.div`
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 3fr;
+`;
+const InfoText = styled.p`
+  font-weight: bold;
+  color: #324d67;
 `;
 
 const Line = styled.div`
@@ -154,6 +184,7 @@ const ColorSection = styled.div`
   gap: 5rem;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 const ColorRound = styled.div`
   height: 1.5rem;
@@ -180,9 +211,11 @@ const Button = styled.button`
   border: none;
   background: none;
   font-size: 1rem;
-  font-weight: bold;
+
+  color: black;
 `;
 const AddText = styled.p`
   font-size: 2rem;
   font-weight: bold;
+  color: black;
 `;
