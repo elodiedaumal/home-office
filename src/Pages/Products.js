@@ -21,7 +21,7 @@ const Products = () => {
   }
   return (
     <>
-      <PageHeader />
+      <PageHeader title='Products' />
 
       <Container>
         <Filter>

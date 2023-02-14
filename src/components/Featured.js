@@ -7,7 +7,7 @@ const Featured = () => {
   const { products, loading } = useGlobalContext();
 
   if (loading) {
-    return <div>loading...</div>;
+    return <div className='loading'></div>;
   }
   return (
     <Section>
@@ -20,7 +20,7 @@ const Featured = () => {
           .filter((product) => product.featured)
           .slice(0, 3)
           .map((filteredProduct) => (
-            <Link to={`/products/${filteredProduct.name}`}>
+            <Link to={`/products/${filteredProduct.id}`}>
               <Grid>
                 <Img src={filteredProduct.image} alt={filteredProduct.name} />
 

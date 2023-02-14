@@ -1,7 +1,12 @@
 import React from 'react';
+import PageHeader from '../components/PageHeader';
 
 const Checkout = () => {
-  return <div>Checkout</div>;
+  return (
+    <>
+      <PageHeader title='CheckOut' />
+    </>
+  );
 };
 
 export default Checkout;

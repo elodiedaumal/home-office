@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PageHeader = (title) => {
+const PageHeader = ({ title }) => {
   return (
     <Header>
       <HeaderText>
-        <Title>Home</Title> / Products
+        <Title>Home</Title> / {title}
       </HeaderText>
     </Header>
   );
