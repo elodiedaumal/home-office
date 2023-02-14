@@ -23,7 +23,7 @@ const Sidebar = () => {
             {links.map((link) => {
               const { id, text, url } = link;
               return (
-                <Link to={url} key={id}>
+                <Link to={url} key={id} className='link'>
                   {text}
                 </Link>
               );
@@ -63,12 +63,21 @@ const SidebarWrapper = styled.aside`
 const NavLinks = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 1rem;
+  // gap: 2rem;
+
   text-transform: capitalize;
   letter-spacing: 1px;
   font-size: 1rem;
   text-align: left;
+  a {
+    padding: 1rem 1.5rem;
+    &:hover {
+      background-color: #f1f5f8;
+      padding: 1rem 0;
+      padding-left: 2.5rem;
+      transition: padding-left 1.5s;
+    }
+  }
 `;
 
 const Cart = styled.div`

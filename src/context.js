@@ -8,6 +8,7 @@ const products_url = 'https://course-api.com/react-store-products';
 const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [products, setProducts] = useState([]);
+
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
@@ -18,7 +19,7 @@ const AppProvider = ({ children }) => {
     setIsSidebarOpen(false);
   };
 
-  async function getFeatured() {
+  async function getProducts() {
     setLoading(true);
     try {
       const response = await axios.get(products_url);
@@ -32,7 +33,7 @@ const AppProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    getFeatured();
+    getProducts();
   }, []);
 
   return (
@@ -40,9 +41,11 @@ const AppProvider = ({ children }) => {
       value={{
         handleClick,
         isSidebarOpen,
-        getFeatured,
+        getProducts,
         products,
+
         loading,
+        setLoading,
         closeSidebar,
       }}
     >

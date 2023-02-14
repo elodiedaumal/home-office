@@ -2,8 +2,9 @@ import React, { useEffect, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 import { Link } from 'react-router-dom';
-import { FaBars, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaChevronDown, FaSearch } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
+import PageHeader from '../components/PageHeader';
 
 const Products = () => {
   const { products, loading } = useGlobalContext();
@@ -20,11 +21,8 @@ const Products = () => {
   }
   return (
     <>
-      <Header>
-        <HeaderText>
-          <Title>Home</Title> / Products
-        </HeaderText>
-      </Header>
+      <PageHeader />
+
       <Container>
         <Filter>
           <p>Search</p>
@@ -79,14 +77,19 @@ const Products = () => {
           {products.map((filteredProduct) => (
             <>
               <Link
-                to={theme === 'grid' ? `/products/${filteredProduct.name}` : ''}
+                to={theme === 'grid' ? `/products/${filteredProduct.id}` : ''}
               >
-                <Grid className={theme}>
-                  <Img
-                    className={theme}
-                    src={filteredProduct.image}
-                    alt={filteredProduct.name}
-                  />
+                <Grid className={theme} key={filteredProduct.id}>
+                  <ImgContainer>
+                    <Img
+                      className={theme}
+                      src={filteredProduct.image}
+                      alt={filteredProduct.name}
+                    />
+                    {/* <LoupeContainer>
+                      <FaSearch  />
+                    </LoupeContainer> */}
+                  </ImgContainer>
 
                   <ProductInfo className={theme}>
                     <ProductName className={theme}>
@@ -121,19 +124,6 @@ const Products = () => {
 
 export default Products;
 
-const Header = styled.header`
-  background-color: #eaded7;
-  padding: 4.4rem 2rem;
-  color: #453227;
-`;
-
-const HeaderText = styled.h1`
-  margin: 0 auto;
-  max-width: 1240px;
-`;
-const Title = styled.span`
-  color: #795744;
-`;
 const Container = styled.div`
   display: grid;
   gap: 2.5rem;
@@ -193,10 +183,40 @@ const Img = styled.img`
   object-fit: cover;
   height: 175px;
   border-radius: 5px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
   &.list {
     width: 300px;
     height: 200px;
   }
+`;
+
+const ImgContainer = styled.div`
+  &:hover {
+    background-color: #222;
+    border-radius: 5px;
+    height: 175px;
+    position: relative;
+  }
+`;
+
+const LoupeContainer = styled.div`
+  border-radius: 50%;
+  background: #ab7a5f;
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  font-size: 1.25rem;
+  z-index: 999;
 `;
 
 const Price = styled.h5`
@@ -218,6 +238,7 @@ const ProductName = styled.h5`
 
 const Grid = styled.article`
   display: block;
+
   &.list {
     display: grid;
     grid-template-columns: 1fr;
@@ -254,7 +275,7 @@ const Button = styled.button`
   cursor: pointer;
   &.active {
     background-color: black;
-    color: gray;
+    color: #fff;
   }
 `;
 
