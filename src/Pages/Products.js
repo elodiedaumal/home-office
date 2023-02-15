@@ -6,6 +6,7 @@ import { FaBars, FaChevronDown } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
 import PageHeader from '../components/PageHeader';
 import ProductPageGrid from '../components/ProductPageGrid';
+import FilterComponents from '../components/FilterComponents';
 
 const Products = () => {
   const { products, loading, theme, toggleGrid, toggleList } =
@@ -19,30 +20,8 @@ const Products = () => {
       <PageHeader title='Products' />
 
       <Container>
-        <Filter>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-          <p>Search</p>
-        </Filter>
+        <FilterComponents />
+
         <Section className={theme}>
           <TopSort>
             <div>
@@ -88,11 +67,6 @@ const Container = styled.div`
   @media (min-width: 800px) {
     grid-template-columns: 200px 1fr;
   }
-`;
-const Filter = styled.aside`
-  display: flex;
-  flex-direction: column;
-  width: 200px;
 `;
 
 const Section = styled.section`

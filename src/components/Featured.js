@@ -27,7 +27,7 @@ const Featured = () => {
             ></FeaturedGrid>
           ))}
       </Products>
-      <Link>
+      <Link to='products'>
         <Button className='btn'>ALL PRODUCTS</Button>
       </Link>
     </Section>
