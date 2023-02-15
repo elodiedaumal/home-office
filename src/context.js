@@ -8,7 +8,7 @@ const products_url = 'https://course-api.com/react-store-products';
 const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [products, setProducts] = useState([]);
-
+  const [theme, setTheme] = useState('grid');
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
@@ -36,6 +36,13 @@ const AppProvider = ({ children }) => {
     getProducts();
   }, []);
 
+  const toggleGrid = () => {
+    setTheme('grid');
+  };
+  const toggleList = () => {
+    setTheme('list');
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -43,10 +50,12 @@ const AppProvider = ({ children }) => {
         isSidebarOpen,
         getProducts,
         products,
-
+        theme,
         loading,
         setLoading,
         closeSidebar,
+        toggleGrid,
+        toggleList,
       }}
     >
       {children}

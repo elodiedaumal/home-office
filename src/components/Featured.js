@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
+import FeaturedGrid from './FeaturedGrid';
 
 const Featured = () => {
   const { products, loading } = useGlobalContext();
@@ -17,19 +18,13 @@ const Featured = () => {
       </Header>
       <Products>
         {products
-          .filter((product) => product.featured)
+          .filter((filteredProduct) => filteredProduct.featured)
           .slice(0, 3)
           .map((filteredProduct) => (
-            <Link to={`/products/${filteredProduct.id}`}>
-              <Grid>
-                <Img src={filteredProduct.image} alt={filteredProduct.name} />
-
-                <ProductInfo>
-                  <p>{filteredProduct.name}</p>
-                  <Price>${filteredProduct.price / 100}</Price>
-                </ProductInfo>
-              </Grid>
-            </Link>
+            <FeaturedGrid
+              key={filteredProduct.id}
+              product={filteredProduct}
+            ></FeaturedGrid>
           ))}
       </Products>
       <Link>
@@ -74,6 +69,9 @@ const Products = styled.div`
   margin: 4rem auto;
   @media (min-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 const Grid = styled.article`
