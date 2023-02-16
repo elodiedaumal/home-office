@@ -4,12 +4,14 @@ import axios from 'axios';
 const AppContext = React.createContext();
 
 const products_url = 'https://course-api.com/react-store-products';
+export const single_product_url = `https://course-api.com/react-store-single-product?id=`;
 
 const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [theme, setTheme] = useState('grid');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [singleProduct, setSingleProduct] = useState([]);
 
   const handleClick = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -43,6 +45,19 @@ const AppProvider = ({ children }) => {
     setTheme('list');
   };
 
+  async function getSingleProduct(url) {
+    setLoading(true);
+
+    try {
+      const response = await axios.get(url);
+      const singleProduct = response.data;
+      setSingleProduct(singleProduct);
+    } catch (error) {
+      console.error(error);
+    }
+    setLoading(false);
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -56,6 +71,8 @@ const AppProvider = ({ children }) => {
         closeSidebar,
         toggleGrid,
         toggleList,
+        getSingleProduct,
+        singleProduct,
       }}
     >
       {children}

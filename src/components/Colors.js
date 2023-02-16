@@ -36,6 +36,7 @@ const ColorCheckcontainer = styled.div`
   align-items: center;
   text-align: center;
   font-size: 0rem;
+
   color: #fff;
 `;
 
@@ -44,9 +45,11 @@ const ColorRound = styled.div`
   width: 1rem;
   border-radius: 50%;
   cursor: pointer;
-  background: ${(props) => props.backgroundColor || 'palevioletred'};
+  background: ${(props) => props.backgroundColor || 'black'};
+  opacity: 0.5;
   &.active {
     font-size: 0.8rem;
+    opacity: 1;
   }
 `;
 

@@ -6,7 +6,9 @@ const Error = () => {
   return (
     <Section>
       <Text>Sorry wrong path!!</Text>
-      <Link className='btn'>Back to home page</Link>
+      <Link className='btn' to='/'>
+        Back to home page
+      </Link>
     </Section>
   );
 };

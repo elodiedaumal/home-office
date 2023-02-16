@@ -4,19 +4,30 @@ import styled from 'styled-components';
 
 const Slider = () => {
   return (
-    <ReactSlidercontainer
-      className='customSlider'
-      trackClassName='customSlider-track'
-      thumbClassName='customSlider-thumb'
-    />
+    <SliderContainer>
+      <ReactSlidercontainer
+        className='customSlider'
+        trackClassName='customSlider-track'
+        thumbClassName='customSlider-thumb'
+        // value={value}
+        // onChange={handleChange}
+        // defaultValue={70}
+      />
+    </SliderContainer>
   );
 };
 
 export default Slider;
 
+const SliderContainer = styled.div`
+  max-width: 80%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+`;
+
 const ReactSlidercontainer = styled(ReactSlider)`
   .customSlider {
-    max-width: 100%;
+    max-width: 130px;
   }
   .customSlider-track {
     /* Top value to align your track to the center of your thumb */

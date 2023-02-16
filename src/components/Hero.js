@@ -15,7 +15,9 @@ const Hero = () => {
           aperiam odio ducimus, obcaecati libero et quia tempora excepturi quis
           alias?
         </Text>
-        <Link className='btn'>Shop now</Link>
+        <Link className='btn' to='products'>
+          Shop now
+        </Link>
       </Header>
 
       <HeroImg>
@@ -31,22 +33,26 @@ export default Hero;
 
 const SectionDesign = styled.section`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
   max-width: 1240px;
-  margin: 0 auto;
+  margin: 0rem auto;
   padding: 0 1rem;
-  @media (max-width: 1000px) {
-    grid-template-columns: 1fr;
+
+  align-items: center;
+  grid-template-columns: 1fr;
+  height: 60vh;
+  @media (min-width: 1000px) {
+    height: 100vh;
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
 const HeroImg = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  grid-template-rows: 2fr 1fr;
-
-  @media (max-width: 1000px) {
-    display: none;
+  display: none;
+  @media (min-width: 1000px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-rows: 2fr 1fr;
   }
 `;
 
@@ -77,7 +83,6 @@ const SmallImg = styled.img`
   grid-row: 2;
   z-index: 1;
   border-radius: 5px;
-
   align-self: end;
 `;
 
@@ -85,7 +90,6 @@ const Header = styled.header`
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  padding: 2rem;
 
   @media (max-width: 1000px) {
     width: 95%;

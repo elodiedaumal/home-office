@@ -25,6 +25,13 @@ const FilterComponents = (props) => {
 
   const [colors, setColors] = useState(allColors);
 
+  const allprice = [...new Set(products.map((item) => item.price))];
+  const maxprice = (
+    Math.max(...products.map((item) => item.price)) / 100
+  ).toLocaleString('de-DE', { maximumFractionDigits: 2 });
+
+  // console.log(maxprice.toLocaleString(undefined, { maximumFractionDigits: 2 }));
+
   return (
     <Filter>
       <form>
@@ -50,7 +57,7 @@ const FilterComponents = (props) => {
       </div>
       <div>
         <Category>Price</Category>
-        <p>$22200</p>
+        <p>${maxprice}</p>
         <Slider />
       </div>
       <Shipping>
