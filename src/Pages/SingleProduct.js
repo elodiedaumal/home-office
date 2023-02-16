@@ -8,33 +8,29 @@ import { useGlobalContext } from '../context';
 import { useParams } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import Picturesingle from '../components/Picturesingle';
+import Error from './Error';
 import Addtocart from '../components/Addtocart.js';
 import Stars from '../components/Stars.js';
 
 const SingleProduct = () => {
-  const { loading, getSingleProduct, singleProduct } = useGlobalContext();
+  const { loading, getSingleProduct, singleProduct, error } =
+    useGlobalContext();
 
   let { id } = useParams();
 
   useEffect(() => {
     getSingleProduct(`${single_product_url}${id}`);
-  }, []);
+  }, [id]);
 
-  // const increase = () => {
-  //   let tempCart = state.cart.map((cartItem) => {
-  //     if (cartItem.id === action.payload) {
-  //       return { ...cartItem, amount: cartItem.amount + 1 };
-  //     }
-  //     return cartItem;
-  //   });
-  //   return { ...state, cart: tempCart };
-  // };
   if (loading) {
     return <div className='loading'></div>;
   }
+  if (error) {
+    return <Error />;
+  }
   return (
     <>
-      <PageHeader title={singleProduct.name} />
+      <PageHeader title={singleProduct.name} product={singleProduct.name} />
       <Section>
         <Link to='/products'>
           <ButtonTop className='btn'>Back to products</ButtonTop>

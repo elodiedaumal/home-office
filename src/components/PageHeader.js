@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PageHeader = ({ title }) => {
+const PageHeader = ({ title, product }) => {
   return (
     <Header>
       <HeaderText>
-        <Title>Home</Title> / {title}
+        <Title>Home / </Title>
+        {product ? <Title> Product /</Title> : ''} {title}
       </HeaderText>
     </Header>
   );
@@ -17,6 +18,7 @@ const Header = styled.header`
   background-color: #eaded7;
   padding: 4.4rem 2rem;
   color: #453227;
+  text-transform: capitalize;
 `;
 
 const HeaderText = styled.h1`
