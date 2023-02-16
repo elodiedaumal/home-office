@@ -15,7 +15,7 @@ import Stars from '../components/Stars.js';
 const SingleProduct = () => {
   const { loading, getSingleProduct, singleProduct, error } =
     useGlobalContext();
-  const { stock, price, images, reviews, stars, name } = singleProduct;
+  const { stock, price, images, reviews, stars, name, colors } = singleProduct;
 
   let { id } = useParams();
 
@@ -66,7 +66,7 @@ const SingleProduct = () => {
             </Info>
           </SectionInfo>
           <Line></Line>
-          <Addtocart />
+          <Addtocart colors={colors} />
         </GridRight>
       </Section>
     </>
