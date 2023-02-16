@@ -8,6 +8,21 @@ const Addtocart = () => {
   const { singleProduct, loading } = useGlobalContext();
 
   const [bgcolor, setBgcolor] = useState(singleProduct.colors[0]);
+  const [amountsingle, setAmountsingle] = useState(1);
+
+  const increasebtn = () => {
+    if (amountsingle < singleProduct.stock) {
+      setAmountsingle(amountsingle + 1);
+    }
+    if (amountsingle === singleProduct.stock)
+      setAmountsingle(singleProduct.stock);
+  };
+  const deacresebtn = () => {
+    if (amountsingle > 0) {
+      setAmountsingle(amountsingle - 1);
+    }
+    if (amountsingle === 0) setAmountsingle(0);
+  };
 
   if (loading) {
     return <div className='loading'></div>;
@@ -35,11 +50,11 @@ const Addtocart = () => {
       </ColorSection>
       <CartContainer>
         <AddContainer>
-          <Button>
+          <Button onClick={deacresebtn}>
             <FaMinus />
           </Button>
-          <AddText>1</AddText>
-          <Button>
+          <AddText>{amountsingle}</AddText>
+          <Button onClick={increasebtn}>
             <FaPlus />
           </Button>
         </AddContainer>
