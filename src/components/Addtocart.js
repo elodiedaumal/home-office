@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
 
-const Addtocart = () => {
+const Addtocart = ({ colors = [''] }) => {
   const { singleProduct, loading } = useGlobalContext();
 
   const [bgcolor, setBgcolor] = useState(singleProduct.colors[0]);
