@@ -42,9 +42,16 @@ const Products = () => {
             <Line></Line>
             <SortBy>
               <p>Sort By</p>
-              <p>
-                Price (Lowest) <FaChevronDown />
-              </p>
+              <Select
+                name='companies'
+                id='companies'
+                // value={companies}
+                // onChange={handleChange}
+                className='form-input'
+              >
+                <option>Price (Lowest)</option>;<option>Price (Highest)</option>
+                ;<option>Name (A-Z)</option>;<option>Name (Z-A)</option>;
+              </Select>
             </SortBy>
           </TopSort>
           <ProductPageGrid products={products} />
@@ -127,4 +134,12 @@ const SortBy = styled.div`
   display: flex;
   column-gap: 1rem;
   width: 100%;
+`;
+
+const Select = styled.select`
+  background: none;
+  border: none;
+
+  cusor: pointer;
+  font-size: 1rem;
 `;
