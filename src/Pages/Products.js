@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 // import { Link } from 'react-router-dom';
@@ -11,6 +11,14 @@ import FilterComponents from '../components/FilterComponents';
 const Products = () => {
   const { products, loading, theme, toggleGrid, toggleList } =
     useGlobalContext();
+  // const [name, setName] = useState('sort');
+  // const [value, setValue] = useState('price-lowest');
+  // const SortedProducts = (e) => {
+  //   setName(e.targer.name);
+  //   setValue(e.targer.value);
+
+  //   console.log(name, value);
+  // };
 
   if (loading) {
     return <div className='loading'></div>;
@@ -41,16 +49,17 @@ const Products = () => {
             <p>{products.length} Product Found </p>
             <Line></Line>
             <SortBy>
-              <p>Sort By</p>
+              <label htmlFor='sort'>Sort By</label>
               <Select
-                name='companies'
-                id='companies'
-                // value={companies}
-                // onChange={handleChange}
-                className='form-input'
+                name='sort'
+                id='sort'
+                // value={name}
+                // onchange={SortedProducts}
               >
-                <option>Price (Lowest)</option>;<option>Price (Highest)</option>
-                ;<option>Name (A-Z)</option>;<option>Name (Z-A)</option>;
+                <option value='price-lowest'>Price (Lowest)</option>
+                <option value='price-highest'>Price (Highest)</option>
+                <option value='name-down'>Name (A-Z)</option>
+                <option value='name-up'>Name (Z-A)</option>
               </Select>
             </SortBy>
           </TopSort>
@@ -130,7 +139,7 @@ const Line = styled.div`
   max-width: 35rem;
 `;
 
-const SortBy = styled.div`
+const SortBy = styled.form`
   display: flex;
   column-gap: 1rem;
   width: 100%;

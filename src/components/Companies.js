@@ -4,17 +4,14 @@ import styled from 'styled-components';
 const Companies = ({ companies }) => {
   return (
     <div>
-      <Select
-        name='companies'
-        id='companies'
-        value={companies}
-        // onChange={handleChange}
-        className='form-input'
-      >
-        {companies.map((company, index) => {
-          return <option value={company}>{company}</option>;
-        })}
-      </Select>
+      <form>
+        <label htmlFor='companies'></label>
+        <Select name='companies' id='companies'>
+          {companies.map((company, index) => {
+            return <option value={company}>{company}</option>;
+          })}
+        </Select>
+      </form>
     </div>
   );
 };

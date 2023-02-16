@@ -5,7 +5,6 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 const Stars = () => {
   const { singleProduct } = useGlobalContext();
-  console.log(singleProduct.stars);
 
   const tempStars = Array.from({ length: 5 }, (_, index) => {
     const number = index + 0.5;

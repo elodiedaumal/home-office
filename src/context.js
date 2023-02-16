@@ -13,6 +13,10 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [singleProduct, setSingleProduct] = useState([]);
 
+  //////////////////////////////////////////////////////
+  // NAVBAR CONTEXT
+  /////////////////////////////////////////////////////
+
   const handleClick = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -20,6 +24,10 @@ const AppProvider = ({ children }) => {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
+
+  //////////////////////////////////////////////////////
+  // FETCH PRODUCTS
+  /////////////////////////////////////////////////////
 
   async function getProducts() {
     setLoading(true);
@@ -38,13 +46,6 @@ const AppProvider = ({ children }) => {
     getProducts();
   }, []);
 
-  const toggleGrid = () => {
-    setTheme('grid');
-  };
-  const toggleList = () => {
-    setTheme('list');
-  };
-
   async function getSingleProduct(url) {
     setLoading(true);
 
@@ -57,6 +58,17 @@ const AppProvider = ({ children }) => {
     }
     setLoading(false);
   }
+
+  //////////////////////////////////////////////////////
+  // PRODUCT FILTER PAGE
+  /////////////////////////////////////////////////////
+
+  const toggleGrid = () => {
+    setTheme('grid');
+  };
+  const toggleList = () => {
+    setTheme('list');
+  };
 
   return (
     <AppContext.Provider
