@@ -32,7 +32,7 @@ const Addtocart = ({ colors = [] }) => {
       <ColorSection>
         <InfoText>Colors:</InfoText>{' '}
         <ColorContainer>
-          {singleProduct.colors.map((color, index) => {
+          {colors.map((color, index) => {
             const colors = `${color}`;
 
             return (
