@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../context';
 import styled from 'styled-components';
 
-const Picturesingle = ({ images = [] }) => {
+const Picturesingle = ({ images = [{ url: '' }] }) => {
   const { singleProduct } = useGlobalContext();
 
-  const [mainPicture, setMainPicture] = useState([images[0]]);
+  const [mainPicture, setMainPicture] = useState([images[0].url]);
 
   return (
     <ImgContainer>
