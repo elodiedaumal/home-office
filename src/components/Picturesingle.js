@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../context';
 import styled from 'styled-components';
 
 const Picturesingle = () => {
-  const { singleProduct } = useGlobalContext();
+  const { singleProduct, loading } = useGlobalContext();
 
-  const { id, url } = singleProduct.images[0];
-  const [mainPicture, setMainPicture] = useState(url);
-  console.log(url);
+  const [mainPicture, setMainPicture] = useState(singleProduct.images[0].url);
+
+  if (loading) {
+    return <div className='loading'></div>;
+  }
 
   return (
     <ImgContainer>

@@ -18,7 +18,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getSingleProduct(`${single_product_url}${id}`);
-  }, [id]);
+  }, []);
 
   // const increase = () => {
   //   let tempCart = state.cart.map((cartItem) => {
