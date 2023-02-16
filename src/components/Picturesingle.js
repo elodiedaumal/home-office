@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const Picturesingle = () => {
   const { singleProduct } = useGlobalContext();
   const [mainPicture, setMainPicture] = useState(singleProduct.images[0].url);
-  console.log(mainPicture);
 
   return (
     <ImgContainer>

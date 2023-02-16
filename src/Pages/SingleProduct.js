@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import Picturesingle from '../components/Picturesingle';
 import Addtocart from '../components/Addtocart.js';
+import Stars from '../components/Stars.js';
 
 const SingleProduct = () => {
   const { loading, getSingleProduct, singleProduct } = useGlobalContext();
@@ -45,24 +46,8 @@ const SingleProduct = () => {
           <SectionInfo>
             <div>
               <Name>{singleProduct.name}</Name>
-              <div>
-                <span>
-                  <FaStar />
-                </span>
-                <span>
-                  <FaStar />
-                </span>
-                <span>
-                  <FaStar />
-                </span>
-                <span>
-                  <FaStar />
-                </span>
-                <span>
-                  <FaStar />
-                </span>{' '}
-                ( {singleProduct.reviews} customers reviews )
-              </div>
+              <Stars />
+
               <Price>${singleProduct.price / 100}</Price>
             </div>
             <p>{singleProduct.description}</p>
@@ -75,7 +60,7 @@ const SingleProduct = () => {
               )}
             </Info>
             <Info>
-              <InfoText>Brands:</InfoText>
+              <InfoText>Brand:</InfoText>
               <p>{singleProduct.company}</p>
             </Info>
             <Info>
