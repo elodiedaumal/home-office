@@ -2,27 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../context';
 import styled from 'styled-components';
 
-const Picturesingle = () => {
-  const { singleProduct, loading } = useGlobalContext();
+const Picturesingle = ({ images = [] }) => {
+  const { singleProduct } = useGlobalContext();
 
-  const [mainPicture, setMainPicture] = useState(singleProduct.images[0].url);
-
-  if (loading) {
-    return <div className='loading'></div>;
-  }
+  const [mainPicture, setMainPicture] = useState([images[0]]);
 
   return (
     <ImgContainer>
       <MainPicture src={mainPicture} />
       <ThumbnailContainer>
-        {singleProduct.images.map((picture) => {
+        {images.map((picture) => {
           const { id, url } = picture;
 
           return (
             <Imgthumb
               key={id}
-              // width={width}
-              // height={height}
               src={url}
               alt={singleProduct.name}
               onClick={() => setMainPicture(url)}

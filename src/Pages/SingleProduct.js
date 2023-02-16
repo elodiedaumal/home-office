@@ -15,6 +15,7 @@ import Stars from '../components/Stars.js';
 const SingleProduct = () => {
   const { loading, getSingleProduct, singleProduct, error } =
     useGlobalContext();
+  const { stock, price, images, reviews, stars, name } = singleProduct;
 
   let { id } = useParams();
 
@@ -36,7 +37,7 @@ const SingleProduct = () => {
           <ButtonTop className='btn'>Back to products</ButtonTop>
         </Link>
 
-        <Picturesingle />
+        <Picturesingle images={images} />
 
         <GridRight>
           <SectionInfo>
