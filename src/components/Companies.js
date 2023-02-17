@@ -8,7 +8,11 @@ const Companies = ({ companies }) => {
         <label htmlFor='companies'></label>
         <Select name='companies' id='companies'>
           {companies.map((company, index) => {
-            return <option value={company}>{company}</option>;
+            return (
+              <option key={index} value={company}>
+                {company}
+              </option>
+            );
           })}
         </Select>
       </form>

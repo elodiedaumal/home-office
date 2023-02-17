@@ -1,24 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
-// import { Link } from 'react-router-dom';
-import { FaBars, FaChevronDown } from 'react-icons/fa';
-import { BsFillGridFill } from 'react-icons/bs';
+
 import PageHeader from '../components/PageHeader';
 import ProductPageGrid from '../components/ProductPageGrid';
 import FilterComponents from '../components/FilterComponents';
+import Sortbybar from '../components/Sortbybar';
 
 const Products = () => {
-  const { products, loading, theme, toggleGrid, toggleList } =
+  const { products, loading, theme, value, filterproducts } =
     useGlobalContext();
-  // const [name, setName] = useState('sort');
-  // const [value, setValue] = useState('price-lowest');
-  // const SortedProducts = (e) => {
-  //   setName(e.targer.name);
-  //   setValue(e.targer.value);
-
-  //   console.log(name, value);
-  // };
 
   if (loading) {
     return <div className='loading'></div>;
@@ -31,39 +22,9 @@ const Products = () => {
         <FilterComponents />
 
         <Section className={theme}>
-          <TopSort>
-            <div>
-              <Button
-                className={theme === 'grid' ? 'active' : ''}
-                onClick={toggleGrid}
-              >
-                <BsFillGridFill />
-              </Button>
-              <Button
-                className={theme === 'list' ? 'active' : ''}
-                onClick={toggleList}
-              >
-                <FaBars />
-              </Button>
-            </div>
-            <p>{products.length} Product Found </p>
-            <Line></Line>
-            <SortBy>
-              <label htmlFor='sort'>Sort By</label>
-              <Select
-                name='sort'
-                id='sort'
-                // value={name}
-                // onchange={SortedProducts}
-              >
-                <option value='price-lowest'>Price (Lowest)</option>
-                <option value='price-highest'>Price (Highest)</option>
-                <option value='name-down'>Name (A-Z)</option>
-                <option value='name-up'>Name (Z-A)</option>
-              </Select>
-            </SortBy>
-          </TopSort>
-          <ProductPageGrid products={products} />
+          <Sortbybar />
+
+          <ProductPageGrid products={products} value={value} />
         </Section>
       </Container>
     </>
@@ -103,52 +64,4 @@ const Section = styled.section`
   @media (min-width: 1150px) {
     grid-template-columns: repeat(3, 1fr);
   }
-`;
-
-const TopSort = styled.div`
-  display: grid;
-  grid-column: 1/-1;
-  column-gap: 1rem;
-  align-items: center;
-  row-gap: 1rem;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 500px) {
-    grid-template-columns: auto auto 1fr auto;
-  }
-`;
-const Button = styled.button`
-  background: none;
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 1rem;
-  padding: 2px;
-  border-radius: 5px;
-  margin-right: 0.5rem;
-  cursor: pointer;
-  &.active {
-    background-color: black;
-    color: #fff;
-  }
-`;
-
-const Line = styled.div`
-  background: #bcccdc;
-  height: 2px;
-  width: 100%;
-  max-width: 35rem;
-`;
-
-const SortBy = styled.form`
-  display: flex;
-  column-gap: 1rem;
-  width: 100%;
-`;
-
-const Select = styled.select`
-  background: none;
-  border: none;
-
-  cusor: pointer;
-  font-size: 1rem;
 `;

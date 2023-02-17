@@ -10,8 +10,8 @@ const Colors = ({ colors }) => {
         const colors = `${color}`;
 
         return (
-          <ColorCheckcontainer>
-            <ColorRound key={index} backgroundColor={colors}>
+          <ColorCheckcontainer key={index}>
+            <ColorRound backgroundColor={colors}>
               <FaCheck />
             </ColorRound>
           </ColorCheckcontainer>

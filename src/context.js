@@ -70,6 +70,12 @@ const AppProvider = ({ children }) => {
     setTheme('list');
   };
 
+  const [value, setValue] = useState('price-lowest');
+
+  const SortedProducts = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -85,6 +91,8 @@ const AppProvider = ({ children }) => {
         toggleList,
         getSingleProduct,
         singleProduct,
+        SortedProducts,
+        value,
       }}
     >
       {children}
