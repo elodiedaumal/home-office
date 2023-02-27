@@ -15,8 +15,9 @@ const Products = () => {
     text,
     setText,
     products,
-    selectCatergory,
+    selectCategory,
     selectCompany,
+    selectColors,
   } = useGlobalContext();
 
   if (loading) {
@@ -36,8 +37,9 @@ const Products = () => {
             products={products}
             value={value}
             text={text}
-            selectCatergory={selectCatergory}
+            selectCategory={selectCategory}
             selectCompany={selectCompany}
+            selectColors={selectColors}
           />
         </Section>
       </Container>

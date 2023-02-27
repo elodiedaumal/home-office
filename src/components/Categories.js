@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 
 const Categories = ({ categories }) => {
-  const { setSelectCatergory } = useGlobalContext();
+  const { setSelectCategory, handleActiveClick, isActive, selectCategory } =
+    useGlobalContext();
+
   const selectcategory = (e) => {
-    setSelectCatergory(e.target.value);
+    setSelectCategory(e.target.value);
   };
 
   return (
@@ -14,9 +16,12 @@ const Categories = ({ categories }) => {
         return (
           <Link
             type='button'
-            className='filter-btn'
+            className={selectCategory === category ? 'active' : ''}
             key={index}
-            onClick={selectcategory}
+            onClick={(e) => {
+              selectcategory(e);
+              handleActiveClick(e);
+            }}
             value={category}
           >
             {category}
@@ -43,4 +48,8 @@ const Link = styled.button`
   cursor: pointer;
   letter-spacing: 1.5px;
   font-size: 1.2rem;
+  border-bottom: 0px solid blue;
+  &.active {
+    border-bottom: 2px solid #617d98;
+  }
 `;

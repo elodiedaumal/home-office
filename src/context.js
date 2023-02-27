@@ -13,8 +13,10 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [singleProduct, setSingleProduct] = useState([]);
   const [text, setText] = useState('');
-  const [selectCatergory, setSelectCatergory] = useState('');
+  const [selectCategory, setSelectCategory] = useState('');
   const [selectCompany, setSelectCompany] = useState('');
+  const [selectColors, setSelectColors] = useState('');
+  const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState('price-lowest');
 
   //////////////////////////////////////////////////////
@@ -78,6 +80,10 @@ const AppProvider = ({ children }) => {
     setValue(e.target.value);
   };
 
+  const handleActiveClick = (e) => {
+    setIsActive(true);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -95,12 +101,16 @@ const AppProvider = ({ children }) => {
         singleProduct,
         text,
         setText,
-        selectCatergory,
-        setSelectCatergory,
+        selectCategory,
+        setSelectCategory,
         SortedProducts,
         value,
         selectCompany,
         setSelectCompany,
+        selectColors,
+        setSelectColors,
+        handleActiveClick,
+        isActive,
       }}
     >
       {children}

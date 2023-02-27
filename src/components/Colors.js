@@ -1,22 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaCheck } from 'react-icons/fa';
+import { useGlobalContext } from '../context';
 
 const Colors = ({ colors }) => {
+  const { setSelectColors, selectColors } = useGlobalContext();
+  const [bgcolor, setBgcolor] = useState();
+
+  const selectAllColors = (e) => {
+    setSelectColors('all');
+    setBgcolor('');
+  };
   return (
     <CategoryContainer>
-      <Link type='button'>All</Link>
-      {colors.map((color, index) => {
-        const colors = `${color}`;
+      <Link
+        type='button'
+        onClick={selectAllColors}
+        className={selectColors === 'all' ? 'active' : ''}
+      >
+        All
+      </Link>
+      <ColorContainer>
+        {colors.map((color, index) => {
+          const colors = `${color}`;
 
-        return (
-          <ColorCheckcontainer key={index}>
-            <ColorRound backgroundColor={colors}>
+          return (
+            <ColorCheckcontainer
+              key={index}
+              backgroundColor={colors}
+              className={bgcolor === color ? 'active' : ''}
+              value={colors}
+              onClick={(e) => {
+                setBgcolor(color);
+                setSelectColors(e.target.value);
+              }}
+            >
               <FaCheck />
-            </ColorRound>
-          </ColorCheckcontainer>
-        );
-      })}
+            </ColorCheckcontainer>
+          );
+        })}
+      </ColorContainer>
     </CategoryContainer>
   );
 };
@@ -30,28 +53,6 @@ const CategoryContainer = styled.div`
   gap: 0.5rem;
   align-items: center;
 `;
-const ColorCheckcontainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 0rem;
-
-  color: #fff;
-`;
-
-const ColorRound = styled.div`
-  height: 1rem;
-  width: 1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  background: ${(props) => props.backgroundColor || 'black'};
-  opacity: 0.5;
-  &.active {
-    font-size: 0.8rem;
-    opacity: 1;
-  }
-`;
 
 const Link = styled.button`
   background: none;
@@ -62,4 +63,32 @@ const Link = styled.button`
   letter-spacing: 1.5px;
   font-size: 1.1rem;
   margin-right: 2px;
+  &.active {
+    border-bottom: 2px solid #617d98;
+  }
+`;
+
+const ColorCheckcontainer = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0rem;
+  color: #fff;
+  height: 1.1rem;
+  width: 1.1rem;
+  border-radius: 50%;
+  border: none;
+  background: ${(props) => props.backgroundColor || 'black'};
+  opacity: 0.5;
+  cursor: pointer;
+  &.active {
+    font-size: 0.6rem;
+    opacity: 1;
+  }
+`;
+
+const ColorContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
 `;
