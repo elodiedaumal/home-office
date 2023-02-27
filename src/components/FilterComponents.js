@@ -8,7 +8,8 @@ import Colors from '../components/Colors';
 import Slider from './Slider';
 
 const FilterComponents = (props) => {
-  const { products } = useGlobalContext();
+  const { products, setText, text } = useGlobalContext();
+  console.log(text);
   const allCategories = [
     'all',
     ...new Set(products.map((item) => item.category)),
@@ -25,13 +26,13 @@ const FilterComponents = (props) => {
 
   const [colors, setColors] = useState(allColors);
 
-  const allprice = [...new Set(products.map((item) => item.price))];
   const maxprice = (
     Math.max(...products.map((item) => item.price)) / 100
   ).toLocaleString('de-DE', { maximumFractionDigits: 2 });
 
-  // console.log(maxprice.toLocaleString(undefined, { maximumFractionDigits: 2 }));
-
+  const handleSubmit = (e) => {
+    setText(e.target.value);
+  };
   return (
     <Filter>
       <form>
@@ -39,7 +40,7 @@ const FilterComponents = (props) => {
           type='text'
           placeholder='Search'
           value={props.text}
-          onChange={(e) => props.setText(e.target.value)}
+          onChange={handleSubmit}
           autoFocus
         />
       </form>

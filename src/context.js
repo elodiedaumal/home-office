@@ -12,6 +12,7 @@ const AppProvider = ({ children }) => {
   const [theme, setTheme] = useState('grid');
   const [loading, setLoading] = useState(true);
   const [singleProduct, setSingleProduct] = useState([]);
+  const [text, setText] = useState('');
 
   //////////////////////////////////////////////////////
   // NAVBAR CONTEXT
@@ -44,7 +45,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [text]);
 
   async function getSingleProduct(url) {
     setLoading(true);
@@ -70,12 +71,6 @@ const AppProvider = ({ children }) => {
     setTheme('list');
   };
 
-  const [value, setValue] = useState('price-lowest');
-
-  const SortedProducts = (e) => {
-    setValue(e.target.value);
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -91,8 +86,8 @@ const AppProvider = ({ children }) => {
         toggleList,
         getSingleProduct,
         singleProduct,
-        SortedProducts,
-        value,
+        text,
+        setText,
       }}
     >
       {children}
