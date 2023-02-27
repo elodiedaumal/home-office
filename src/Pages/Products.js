@@ -8,7 +8,8 @@ import FilterComponents from '../components/FilterComponents';
 import Sortbybar from '../components/Sortbybar';
 
 const Products = () => {
-  const { loading, theme, value, text, setText, products } = useGlobalContext();
+  const { loading, theme, value, text, setText, products, selectCatergory } =
+    useGlobalContext();
 
   if (loading) {
     return <div className='loading'></div>;
@@ -23,7 +24,12 @@ const Products = () => {
         <Section className={theme}>
           <Sortbybar />
 
-          <ProductPageGrid products={products} value={value} text={text} />
+          <ProductPageGrid
+            products={products}
+            value={value}
+            text={text}
+            selectCatergory={selectCatergory}
+          />
         </Section>
       </Container>
     </>

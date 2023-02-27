@@ -76,7 +76,7 @@ const AppProvider = ({ children }) => {
   const SortedProducts = (e) => {
     setValue(e.target.value);
   };
-  console.log(selectCatergory);
+
   return (
     <AppContext.Provider
       value={{
