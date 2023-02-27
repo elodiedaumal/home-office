@@ -14,6 +14,7 @@ const AppProvider = ({ children }) => {
   const [singleProduct, setSingleProduct] = useState([]);
   const [text, setText] = useState('');
   const [selectCatergory, setSelectCatergory] = useState('');
+  const [selectCompany, setSelectCompany] = useState('');
   const [value, setValue] = useState('price-lowest');
 
   //////////////////////////////////////////////////////
@@ -98,6 +99,8 @@ const AppProvider = ({ children }) => {
         setSelectCatergory,
         SortedProducts,
         value,
+        selectCompany,
+        setSelectCompany,
       }}
     >
       {children}

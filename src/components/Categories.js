@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 
 const Categories = ({ categories }) => {
-  const { setSelectCatergory, selectCatergory } = useGlobalContext();
+  const { setSelectCatergory } = useGlobalContext();
   const selectcategory = (e) => {
     setSelectCatergory(e.target.value);
   };
-  console.log(selectCatergory);
+
   return (
     <CategoryContainer>
       {categories.map((category, index) => {

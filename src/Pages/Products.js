@@ -8,8 +8,16 @@ import FilterComponents from '../components/FilterComponents';
 import Sortbybar from '../components/Sortbybar';
 
 const Products = () => {
-  const { loading, theme, value, text, setText, products, selectCatergory } =
-    useGlobalContext();
+  const {
+    loading,
+    theme,
+    value,
+    text,
+    setText,
+    products,
+    selectCatergory,
+    selectCompany,
+  } = useGlobalContext();
 
   if (loading) {
     return <div className='loading'></div>;
@@ -29,6 +37,7 @@ const Products = () => {
             value={value}
             text={text}
             selectCatergory={selectCatergory}
+            selectCompany={selectCompany}
           />
         </Section>
       </Container>
