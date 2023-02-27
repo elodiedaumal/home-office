@@ -5,7 +5,8 @@ import { FaBars } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
 
 const Sortbybar = () => {
-  const { products, theme, toggleGrid, toggleList, value } = useGlobalContext();
+  const { products, theme, toggleGrid, toggleList, value, SortedProducts } =
+    useGlobalContext();
 
   return (
     <TopSort>
@@ -27,7 +28,7 @@ const Sortbybar = () => {
       <Line></Line>
       <SortBy>
         <label htmlFor='sort'>Sort By</label>
-        <Select id='sort' value={value} name='sort'>
+        <Select id='sort' value={value} name='sort' onChange={SortedProducts}>
           <option value='price-lowest'>Price (Lowest)</option>
           <option value='price-highest'>Price (Highest)</option>
           <option value='name-down'>Name (A-Z)</option>

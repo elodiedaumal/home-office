@@ -13,6 +13,8 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [singleProduct, setSingleProduct] = useState([]);
   const [text, setText] = useState('');
+  const [selectCatergory, setSelectCatergory] = useState('');
+  const [value, setValue] = useState('price-lowest');
 
   //////////////////////////////////////////////////////
   // NAVBAR CONTEXT
@@ -71,6 +73,10 @@ const AppProvider = ({ children }) => {
     setTheme('list');
   };
 
+  const SortedProducts = (e) => {
+    setValue(e.target.value);
+  };
+  console.log(selectCatergory);
   return (
     <AppContext.Provider
       value={{
@@ -88,6 +94,10 @@ const AppProvider = ({ children }) => {
         singleProduct,
         text,
         setText,
+        selectCatergory,
+        setSelectCatergory,
+        SortedProducts,
+        value,
       }}
     >
       {children}

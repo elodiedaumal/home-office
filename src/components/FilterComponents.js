@@ -8,8 +8,8 @@ import Colors from '../components/Colors';
 import Slider from './Slider';
 
 const FilterComponents = (props) => {
-  const { products, setText, text } = useGlobalContext();
-  console.log(text);
+  const { products, setText } = useGlobalContext();
+
   const allCategories = [
     'all',
     ...new Set(products.map((item) => item.category)),

@@ -1,12 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useGlobalContext } from '../context';
 
 const Categories = ({ categories }) => {
+  const { setSelectCatergory } = useGlobalContext();
+  const selectcategory = (e) => {
+    setSelectCatergory(e.target.value);
+  };
+
   return (
     <CategoryContainer>
       {categories.map((category, index) => {
         return (
-          <Link type='button' className='filter-btn' key={index}>
+          <Link
+            type='button'
+            className='filter-btn'
+            key={index}
+            onClick={selectcategory}
+            value={category}
+          >
             {category}
           </Link>
         );
