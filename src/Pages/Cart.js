@@ -31,7 +31,7 @@ const Cart = (item) => {
                 <ImgInfo>
                   <Img src={item.images[0].url} alt={item.name} />
                   <div>
-                    <p>{item.name}</p>
+                    <Name>{item.name}</Name>
                     <p>Color:</p>
                     <PriceMobile>${item.price / 100}</PriceMobile>
                   </div>
@@ -60,6 +60,21 @@ const Cart = (item) => {
             <ButtonClear className='btn'>Clear The Cart</ButtonClear>
           </ButtonContainer>
         </Flex>
+        <div>
+          <div>
+            <p>Subtotal</p>
+            <p>$2555</p>
+          </div>
+          <div>
+            <p>Shipping Fee</p>
+            <p>$5</p>
+          </div>
+          <div>
+            <p>Order Total</p>
+            <p>$39510</p>
+          </div>
+          <button className='btn'>Proceed to checkout</button>
+        </div>
       </CartSection>
     </>
   );
@@ -90,7 +105,7 @@ const CartDisplay = styled.div`
   align-items: center;
   justify-items: center;
   max-width: 1240px;
-  width: 100vw;
+  width: 95vw;
   margin-bottom: 3rem;
   @media (min-width: 600px) {
     gap: 2rem;
@@ -107,6 +122,14 @@ const ImgInfo = styled.div`
   grid-template-rows: 75px;
   @media (min-width: 600px) {
     grid-template-columns: auto 1fr;
+  }
+`;
+const Name = styled.p`
+  font-weight: bold;
+  // font-size: 0.8rem;
+  letter-spacing: 1.2px;
+  color: #102a42;
+  @media (min-width: 600px) {
   }
 `;
 const Flex = styled.div`
@@ -150,7 +173,7 @@ const AddContainer = styled.div`
   display: grid;
   gap: 0.5rem;
   grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 1rem;
+  margin-bottom: 0.4rem;
 `;
 
 const Button = styled.button`
@@ -158,6 +181,7 @@ const Button = styled.button`
   background: none;
   font-size: 1rem;
   color: black;
+  padding-top: 8px;
 `;
 const AddText = styled.p`
   font-size: 1.5rem;
@@ -168,6 +192,9 @@ const AddText = styled.p`
   }
 `;
 const PriceMobile = styled.p`
+  color: #ab7a5f;
+  font-weight: bold;
+  letter-spacing: 1.5px;
   @media (min-width: 600px) {
     display: none;
   }
@@ -176,6 +203,9 @@ const PriceDesktop = styled.p`
   display: none;
   @media (min-width: 600px) {
     display: inline-block;
+    color: #ab7a5f;
+    font-weight: bold;
+    letter-spacing: 1.5px;
   }
 `;
 const Subtotal = styled.p`
