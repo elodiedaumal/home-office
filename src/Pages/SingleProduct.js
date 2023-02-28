@@ -9,8 +9,9 @@ import { useParams } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import Picturesingle from '../components/Picturesingle';
 import Error from './Error';
-import Addtocart from '../components/Addtocart.js';
+import Colorssingleproduct from '../components/colorssingleproduct.js';
 import Stars from '../components/Stars.js';
+import AddtoCart from '../components/AddtoCart';
 
 const SingleProduct = () => {
   const { loading, getSingleProduct, singleProduct, error } =
@@ -66,7 +67,8 @@ const SingleProduct = () => {
             </Info>
           </SectionInfo>
           <Line></Line>
-          <Addtocart colors={colors} />
+          <Colorssingleproduct colors={colors} />
+          <AddtoCart singleProduct={singleProduct} />
         </GridRight>
       </Section>
     </>

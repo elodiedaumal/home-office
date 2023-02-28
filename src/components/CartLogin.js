@@ -5,13 +5,16 @@ import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export const CartLogin = () => {
+  const { totalQuantity } = useGlobalContext();
+
   return (
     <Wrapper>
       <Link to='cart'>
         <CartWrapper>
           <p>Cart</p>
           <Cart>
-            <FaShoppingCart className='cart-icon' /> <CartNumber>12</CartNumber>
+            <FaShoppingCart className='cart-icon' />{' '}
+            <CartNumber>{totalQuantity}</CartNumber>
           </Cart>
         </CartWrapper>
       </Link>

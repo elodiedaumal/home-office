@@ -12,7 +12,6 @@ const AppProvider = ({ children }) => {
   const [theme, setTheme] = useState('grid');
   const [loading, setLoading] = useState(true);
   const [singleProduct, setSingleProduct] = useState([]);
-  const [bgcolor, setBgcolor] = useState();
   const [text, setText] = useState('');
   const [selectCategory, setSelectCategory] = useState('all');
   const [selectCompany, setSelectCompany] = useState('all');
@@ -20,6 +19,7 @@ const AppProvider = ({ children }) => {
   const [selectShipping, setSelectShipping] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState('price-lowest');
+  const [bgcolor, setBgcolor] = useState();
 
   //////////////////////////////////////////////////////
   // NAVBAR CONTEXT
@@ -101,6 +101,53 @@ const AppProvider = ({ children }) => {
     setSelectShipping(!selectShipping);
   };
 
+  //////////////////////////////////////////////////////
+  // CART COMPONENT
+  /////////////////////////////////////////////////////
+
+  const [amountsingle, setAmountsingle] = useState(1);
+  const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState();
+  const [totalQuantity, setTotalQuantity] = useState(0);
+
+  const increasebtn = () => {
+    if (amountsingle < singleProduct.stock) {
+      setAmountsingle(amountsingle + 1);
+    }
+    if (amountsingle === singleProduct.stock)
+      setAmountsingle(singleProduct.stock);
+  };
+  const deacresebtn = () => {
+    if (amountsingle > 0) {
+      setAmountsingle(amountsingle - 1);
+    }
+    if (amountsingle <= 1) setAmountsingle(1);
+  };
+
+  const addToCart = (product, quantity) => {
+    const checkProductInCart = cartItems.find((item) => item.id === product.id);
+    setTotalPrice(
+      (prevTotalPrice) => prevTotalPrice + product.price * quantity
+    );
+    setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity);
+    setAmountsingle(1);
+
+    if (checkProductInCart) {
+      const updatedCartItems = cartItems.map((cartProduct) => {
+        if (cartProduct.id === product.id) {
+          return {
+            ...cartProduct,
+            quantity: cartProduct.quantity + quantity,
+          };
+        }
+      });
+      setCartItems(updatedCartItems);
+    } else {
+      product.quantity = quantity;
+      setCartItems([...cartItems, { ...product }]);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -134,6 +181,13 @@ const AppProvider = ({ children }) => {
         bgcolor,
         selectFreeShipping,
         selectShipping,
+        deacresebtn,
+        amountsingle,
+        increasebtn,
+        totalPrice,
+        addToCart,
+        totalQuantity,
+        cartItems,
       }}
     >
       {children}

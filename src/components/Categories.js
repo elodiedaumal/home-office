@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 
 const Categories = ({ categories }) => {
-  const { setSelectCategory, handleActiveClick, isActive, selectCategory } =
+  const { setSelectCategory, handleActiveClick, selectCategory } =
     useGlobalContext();
 
   const selectcategory = (e) => {
