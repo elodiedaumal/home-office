@@ -46,7 +46,7 @@ const Cart = (item) => {
                     <FaPlus />
                   </Button>
                 </AddContainer>
-                <Subtotal>$ subtotal</Subtotal>
+                <SubtotalCart>$ subtotal</SubtotalCart>
                 <TrashContainer>
                   <TrashIcon />
                 </TrashContainer>
@@ -60,21 +60,28 @@ const Cart = (item) => {
             <ButtonClear className='btn'>Clear The Cart</ButtonClear>
           </ButtonContainer>
         </Flex>
-        <div>
-          <div>
-            <p>Subtotal</p>
-            <p>$2555</p>
-          </div>
-          <div>
-            <p>Shipping Fee</p>
-            <p>$5</p>
-          </div>
-          <div>
-            <p>Order Total</p>
-            <p>$39510</p>
-          </div>
-          <button className='btn'>Proceed to checkout</button>
-        </div>
+        <TotalSection>
+          <TotalContainer>
+            <TotalBorder>
+              <TotalGrid>
+                <Subtotal>
+                  <p>Subtotal:</p>
+                  <p>$2555</p>
+                </Subtotal>
+                <ShippingFee>
+                  <p>Shipping Fee:</p>
+                  <p>$5</p>
+                </ShippingFee>
+                <Line></Line>
+                <OrderTotal>
+                  <p>Order Total:</p>
+                  <p>$39510</p>
+                </OrderTotal>
+              </TotalGrid>
+            </TotalBorder>
+            <TotalButton className='btn'>Proceed to checkout</TotalButton>
+          </TotalContainer>
+        </TotalSection>
       </CartSection>
     </>
   );
@@ -86,6 +93,19 @@ const CartSection = styled.section`
   margin: 2rem auto;
   max-width: 1240px;
   padding: 1rem;
+  @media (min-width: 600px) {
+    padding: 0rem;
+  }
+`;
+const TotalSection = styled.section`
+  width: 95vw;
+  margin: 3rem auto;
+  @media (min-width: 600px) {
+    max-width: 1240px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.2rem;
+  }
 `;
 const Titles = styled.header`
   display: none;
@@ -110,6 +130,19 @@ const CartDisplay = styled.div`
   @media (min-width: 600px) {
     gap: 2rem;
     grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
+  }
+`;
+const TotalContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 2rem;
+  align-items: center;
+  justify-items: center;
+  width: 95vw;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  @media (min-width: 600px) {
+    max-width: 500px;
   }
 `;
 const ImgInfo = styled.div`
@@ -208,7 +241,7 @@ const PriceDesktop = styled.p`
     letter-spacing: 1.5px;
   }
 `;
-const Subtotal = styled.p`
+const SubtotalCart = styled.p`
   display: none;
   @media (min-width: 600px) {
     display: inline-block;
@@ -233,5 +266,52 @@ const TrashContainer = styled.div`
   @media (min-width: 600px) {
     height: 2rem;
     width: 2rem;
+  }
+`;
+const TotalGrid = styled.div`
+  display: grid;
+  gap: 1.25rem;
+`;
+const Subtotal = styled.div`
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  @media (min-width: 600px) {
+    grid-template-columns: 250px 1fr;
+  }
+`;
+const ShippingFee = styled.div`
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  @media (min-width: 600px) {
+    grid-template-columns: 250px 1fr;
+  }
+`;
+const OrderTotal = styled.div`
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0 1rem 0;
+  letter-spacing: 1.5px;
+  @media (min-width: 600px) {
+    font-size: 1.8rem;
+    grid-template-columns: 250px 1fr;
+  }
+`;
+
+const TotalBorder = styled.div`
+  border: 1px solid #bcccdc;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  border-radius: 5px;
+`;
+const TotalButton = styled.button`
+  width: 100%;
+  padding: 1rem;
+  font-weight: bold;
+  @media (min-width: 600px) {
+    font-size: 1.1rem;
   }
 `;
