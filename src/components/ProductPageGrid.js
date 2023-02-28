@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductPageCards from '../components/ProductPageCards';
+import Sortbybar from './Sortbybar';
 
 const ProductPageGrid = (props) => {
   const {
@@ -16,114 +17,20 @@ const ProductPageGrid = (props) => {
     <div className='loading'></div>
   ) : (
     <>
-      {selectCategory === 'all' && selectCompany === 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-            .filter((item) => item.colors.includes(selectColors))
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
-      {selectCategory === 'all' && selectColors === 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-            .filter((item) =>
-              item.company.toLowerCase().includes(selectCompany.toLowerCase())
-            )
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
-      {selectCompany === 'all' && selectColors === 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-            .filter((item) =>
-              item.category.toLowerCase().includes(selectCategory.toLowerCase())
-            )
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
-      {selectCategory === 'all' &&
-      selectCompany === 'all' &&
-      selectColors === 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
-      {selectCategory !== 'all' && selectCompany !== 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-            .filter((item) =>
-              item.company.toLowerCase().includes(selectCompany.toLowerCase())
-            )
-            .filter((item) =>
-              item.category.toLowerCase().includes(selectCategory.toLowerCase())
-            )
-            .filter((item) => item.colors.includes(selectColors))
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
-      {selectCategory === 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.company.toLowerCase().includes(selectCompany.toLowerCase())
-            )
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-            .filter((item) => item.colors.includes(selectColors))
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
-      {selectCompany === 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.category.toLowerCase().includes(selectCategory.toLowerCase())
-            )
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-            .filter((item) => item.colors.includes(selectColors))
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
       {value === 'price-lowest'
         ? [...products]
             .sort((a, b) => a.price - b.price)
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-            // .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.colors.includes(selectColors))
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -134,7 +41,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-            // .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.colors.includes(selectColors))
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
@@ -151,7 +58,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-            // .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.colors.includes(selectColors))
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
@@ -168,9 +75,423 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-            // .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.colors.includes(selectColors))
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-highest' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.price - a.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-down' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-up' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' && selectCategory === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-highest' && selectCategory === 'all'
+        ? [...products]
+            .sort((a, b) => b.price - a.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-down' && selectCategory === 'all'
+        ? [...products]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-up' && selectCategory === 'all'
+        ? [...products]
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' && selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-highest' && selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => b.price - a.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-down' && selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-up' && selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' && selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-highest' && selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.price - a.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-down' && selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-up' && selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-highest' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => b.price - a.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-down' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-up' &&
+      selectCategory === 'all' &&
+      selectCompany === 'all'
+        ? [...products]
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) => item.colors.includes(selectColors))
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' &&
+      selectCategory === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-highest' &&
+      selectCategory === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.price - a.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-down' &&
+      selectCategory === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-up' && selectCategory === 'all' && selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-lowest' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.price - b.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'price-highest' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.price - a.price)
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-down' &&
+      selectCompany === 'all' &&
+      selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
+            )
+            .filter((item) =>
+              item.category.toLowerCase().includes(selectCategory.toLowerCase())
+            )
+            .map((item) => (
+              <ProductPageCards key={item.id} item={item}></ProductPageCards>
+            ))
+        : ''}
+      {value === 'name-up' && selectCompany === 'all' && selectColors === 'all'
+        ? [...products]
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .filter((item) =>
+              item.name.toLowerCase().includes(text.toLowerCase())
             )
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())

@@ -4,13 +4,14 @@ import { FaCheck } from 'react-icons/fa';
 import { useGlobalContext } from '../context';
 
 const Colors = ({ colors }) => {
-  const { setSelectColors, selectColors } = useGlobalContext();
-  const [bgcolor, setBgcolor] = useState();
+  const {
+    setSelectColors,
+    selectColors,
+    selectAllColors,
+    setBgcolor,
+    bgcolor,
+  } = useGlobalContext();
 
-  const selectAllColors = (e) => {
-    setSelectColors('all');
-    setBgcolor('');
-  };
   return (
     <CategoryContainer>
       <Link

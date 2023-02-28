@@ -24,7 +24,7 @@ const Sortbybar = () => {
           <FaBars />
         </Button>
       </div>
-      <p>{products.length} Product Found </p>
+      <p> </p>
       <Line></Line>
       <SortBy>
         <label htmlFor='sort'>Sort By</label>

@@ -12,10 +12,12 @@ const AppProvider = ({ children }) => {
   const [theme, setTheme] = useState('grid');
   const [loading, setLoading] = useState(true);
   const [singleProduct, setSingleProduct] = useState([]);
+  const [bgcolor, setBgcolor] = useState();
   const [text, setText] = useState('');
-  const [selectCategory, setSelectCategory] = useState('');
-  const [selectCompany, setSelectCompany] = useState('');
-  const [selectColors, setSelectColors] = useState('');
+  const [selectCategory, setSelectCategory] = useState('all');
+  const [selectCompany, setSelectCompany] = useState('all');
+  const [selectColors, setSelectColors] = useState('all');
+  const [selectShipping, setSelectShipping] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState('price-lowest');
 
@@ -83,6 +85,21 @@ const AppProvider = ({ children }) => {
   const handleActiveClick = (e) => {
     setIsActive(true);
   };
+  const clearfilter = (e) => {
+    setText('');
+    setSelectCategory('all');
+    setSelectCompany('all');
+    setSelectColors('all');
+    setBgcolor('');
+  };
+
+  const selectAllColors = (e) => {
+    setSelectColors('all');
+    setBgcolor('');
+  };
+  const selectFreeShipping = (e) => {
+    setSelectShipping(!selectShipping);
+  };
 
   return (
     <AppContext.Provider
@@ -111,6 +128,12 @@ const AppProvider = ({ children }) => {
         setSelectColors,
         handleActiveClick,
         isActive,
+        clearfilter,
+        selectAllColors,
+        setBgcolor,
+        bgcolor,
+        selectFreeShipping,
+        selectShipping,
       }}
     >
       {children}

@@ -8,7 +8,8 @@ import Colors from '../components/Colors';
 import Slider from './Slider';
 
 const FilterComponents = (props) => {
-  const { products, setText } = useGlobalContext();
+  const { products, setText, clearfilter, selectFreeShipping } =
+    useGlobalContext();
 
   const allCategories = [
     'all',
@@ -33,6 +34,7 @@ const FilterComponents = (props) => {
   const handleSubmit = (e) => {
     setText(e.target.value);
   };
+
   return (
     <Filter>
       <form>
@@ -58,14 +60,13 @@ const FilterComponents = (props) => {
       </div>
       <div>
         <Category>Price</Category>
-        <p>${maxprice}</p>
+        <p>$0-${maxprice}</p>
         <Slider />
       </div>
-      <Shipping>
-        <p>Free Shipping</p>
-        <input type='checkbox' />
-      </Shipping>
-      <Button>Clear Filter</Button>
+
+      <Button type='button' onClick={clearfilter}>
+        Clear Filter
+      </Button>
     </Filter>
   );
 };
