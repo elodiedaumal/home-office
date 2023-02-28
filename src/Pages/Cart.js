@@ -32,6 +32,7 @@ const Cart = (item) => {
                   <Img src={item.images[0].url} alt={item.name} />
                   <div>
                     <p>{item.name}</p>
+                    <p>Color:</p>
                     <PriceMobile>${item.price / 100}</PriceMobile>
                   </div>
                 </ImgInfo>
@@ -74,19 +75,23 @@ const CartSection = styled.section`
 const Titles = styled.header`
   display: none;
   @media (min-width: 600px) {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 27px;
+    gap: 2rem;
     align-items: center;
+    max-width: 1240px;
+    justify-items: center;
   }
 `;
 const CartDisplay = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: 220px auto auto;
+  grid-template-rows: 75px;
   align-items: center;
   justify-items: center;
   max-width: 1240px;
   width: 100vw;
-  gap: 0.5rem;
+  margin-bottom: 3rem;
   @media (min-width: 600px) {
     gap: 2rem;
     grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
@@ -99,14 +104,14 @@ const ImgInfo = styled.div`
   gap: 1rem;
   justify-self: left;
   text-transform: capitalize;
+  grid-template-rows: 75px;
   @media (min-width: 600px) {
     grid-template-columns: auto 1fr;
   }
 `;
 const Flex = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 2rem;
+  display: grid;
+  gap: 2rem;
   color: #617d98;
   font-size: 0.8rem;
   letter-spacing: 1.2px;
@@ -180,12 +185,12 @@ const Subtotal = styled.p`
   }
 `;
 const Img = styled.img`
-  max-width: 100px;
-  heigth: 25px;
+  width: 90px;
+  max-height: 75px;
   border-radius: 5px;
   @media (min-width: 600px) {
-    max-width: 150px;
-    heigth: 100%;
+    width: 150px;
+    max-height: 100px;
   }
 `;
 const TrashContainer = styled.div`

@@ -130,7 +130,6 @@ const AppProvider = ({ children }) => {
       (prevTotalPrice) => prevTotalPrice + product.price * quantity
     );
     setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity);
-    setAmountsingle(1);
 
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {

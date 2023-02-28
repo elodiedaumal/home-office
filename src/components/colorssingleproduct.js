@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
 
-const Colorssingleproduct = ({ colors }) => {
+const Colorssingleproduct = ({ colors = [] }) => {
   const { loading, bgcolor, setBgcolor } = useGlobalContext();
 
   if (loading) {
