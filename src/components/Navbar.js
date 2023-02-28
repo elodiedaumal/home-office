@@ -34,9 +34,11 @@ const Navbar = () => {
           })}
         </NavLinks>
       </ul>
+
       <Cart>
         <CartLogin />
       </Cart>
+
       <MenuIcon type='button' onClick={handleClick}>
         {!isSidebarOpen ? (
           <FaBars className='icon-open' />

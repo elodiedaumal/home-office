@@ -2,16 +2,19 @@ import React from 'react';
 import { useGlobalContext } from '../context';
 import styled from 'styled-components';
 import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export const CartLogin = () => {
   return (
     <Wrapper>
-      <CartWrapper>
-        <p>Cart</p>
-        <Cart>
-          <FaShoppingCart className='cart-icon' /> <CartNumber>12</CartNumber>
-        </Cart>
-      </CartWrapper>
+      <Link to='cart'>
+        <CartWrapper>
+          <p>Cart</p>
+          <Cart>
+            <FaShoppingCart className='cart-icon' /> <CartNumber>12</CartNumber>
+          </Cart>
+        </CartWrapper>
+      </Link>
       <CartWrapper>
         Login <FaUserPlus className='cart-icon' />
       </CartWrapper>

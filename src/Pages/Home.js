@@ -3,7 +3,6 @@ import Custom from '../components/Custom';
 import Featured from '../components/Featured';
 import Hero from '../components/Hero';
 import Newsletter from '../components/Newsletter';
-import { useGlobalContext } from '../context';
 
 const Home = () => {
   return (

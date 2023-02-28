@@ -31,7 +31,7 @@ const Sidebar = () => {
           </NavLinks>
         </ul>
 
-        <Cart>
+        <Cart onClick={closeSidebar}>
           <CartLogin />
         </Cart>
       </div>
