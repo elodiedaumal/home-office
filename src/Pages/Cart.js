@@ -4,11 +4,16 @@ import styled from 'styled-components';
 import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
 import { TrashIcon } from '@heroicons/react/24/solid';
 import { useGlobalContext } from '../context';
+import { Link } from 'react-router-dom';
 
 const Cart = (item) => {
   const cartRef = useRef();
-  const { cartItems, deacresebtn, amountsingle, increasebtn } =
+  const { cartItems, totalPrice, toggleCartItemQuantity, totalQuantity } =
     useGlobalContext();
+  let shippingTotal = (Math.round(5.15 * totalQuantity * 100) / 100).toFixed(2);
+  let orderTotal = (
+    Math.round((5.15 * totalQuantity + totalPrice / 100) * 100) / 100
+  ).toFixed(2);
 
   return (
     <>
@@ -23,7 +28,7 @@ const Cart = (item) => {
             <p></p>
           </Titles>
           <Line></Line>
-          {!cartItems ? (
+          {totalQuantity === 0 ? (
             <p>No Item in you cart</p>
           ) : (
             cartItems.map((item) => (
@@ -38,15 +43,21 @@ const Cart = (item) => {
                 </ImgInfo>
                 <PriceDesktop>${item.price / 100}</PriceDesktop>
                 <AddContainer>
-                  <Button onClick={deacresebtn}>
+                  <Button
+                    onClick={() => toggleCartItemQuantity(item.id, 'desc')}
+                  >
                     <FaMinus />
                   </Button>
-                  <AddText>{amountsingle}</AddText>
-                  <Button onClick={increasebtn}>
+                  <AddText>{item.quantity}</AddText>
+                  <Button
+                    onClick={() => toggleCartItemQuantity(item.id, 'inc')}
+                  >
                     <FaPlus />
                   </Button>
                 </AddContainer>
-                <SubtotalCart>$ subtotal</SubtotalCart>
+                <SubtotalCart>
+                  $ {(item.quantity * item.price) / 100}
+                </SubtotalCart>
                 <TrashContainer>
                   <TrashIcon />
                 </TrashContainer>
@@ -56,7 +67,9 @@ const Cart = (item) => {
 
           <Line></Line>
           <ButtonContainer>
-            <ButtonShopping className='btn'>Continue Shopping</ButtonShopping>
+            <Link to='/products'>
+              <ButtonShopping className='btn'>Continue Shopping</ButtonShopping>
+            </Link>
             <ButtonClear className='btn'>Clear The Cart</ButtonClear>
           </ButtonContainer>
         </Flex>
@@ -66,16 +79,16 @@ const Cart = (item) => {
               <TotalGrid>
                 <Subtotal>
                   <p>Subtotal:</p>
-                  <p>$2555</p>
+                  <p>${totalPrice / 100}</p>
                 </Subtotal>
                 <ShippingFee>
                   <p>Shipping Fee:</p>
-                  <p>$5</p>
+                  <p>${shippingTotal}</p>
                 </ShippingFee>
                 <Line></Line>
                 <OrderTotal>
                   <p>Order Total:</p>
-                  <p>$39510</p>
+                  <p>${orderTotal}</p>
                 </OrderTotal>
               </TotalGrid>
             </TotalBorder>

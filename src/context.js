@@ -19,7 +19,7 @@ const AppProvider = ({ children }) => {
   const [selectShipping, setSelectShipping] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState('price-lowest');
-  const [bgcolor, setBgcolor] = useState();
+  const [bgcolor, setBgcolor] = useState([]);
 
   //////////////////////////////////////////////////////
   // NAVBAR CONTEXT
@@ -107,8 +107,10 @@ const AppProvider = ({ children }) => {
 
   const [amountsingle, setAmountsingle] = useState(1);
   const [cartItems, setCartItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState();
+  const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
+  let foundCartProduct;
+  let index;
 
   const increasebtn = () => {
     if (amountsingle < singleProduct.stock) {
@@ -126,6 +128,7 @@ const AppProvider = ({ children }) => {
 
   const addToCart = (product, quantity) => {
     const checkProductInCart = cartItems.find((item) => item.id === product.id);
+
     setTotalPrice(
       (prevTotalPrice) => prevTotalPrice + product.price * quantity
     );
@@ -133,17 +136,46 @@ const AppProvider = ({ children }) => {
 
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
-        if (cartProduct.id === product.id) {
+        if (cartProduct.id === product.id)
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
           };
-        }
       });
       setCartItems(updatedCartItems);
     } else {
       product.quantity = quantity;
       setCartItems([...cartItems, { ...product }]);
+    }
+    setAmountsingle(1);
+  };
+
+  const toggleCartItemQuantity = (id, value) => {
+    foundCartProduct = cartItems.find((item) => item.id === id);
+    index = cartItems.findIndex((product) => product.id === id);
+    const newCartItems = cartItems.filter((item) => item.id !== id);
+
+    if (value === 'inc') {
+      if (foundCartProduct.quantity < foundCartProduct.stock)
+        setCartItems([
+          ...newCartItems,
+          { ...foundCartProduct, quantity: foundCartProduct.quantity + 1 },
+        ]);
+      setTotalPrice(
+        (prevTotalPrice) => prevTotalPrice + foundCartProduct.price
+      );
+      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + 1);
+    } else if (value === 'desc') {
+      if (foundCartProduct.quantity > 1) {
+        setCartItems([
+          ...newCartItems,
+          { ...foundCartProduct, quantity: foundCartProduct.quantity - 1 },
+        ]);
+        setTotalPrice(
+          (prevTotalPrice) => prevTotalPrice - foundCartProduct.price
+        );
+        setTotalQuantity((prevTotalQuantity) => prevTotalQuantity - 1);
+      }
     }
   };
 
@@ -187,6 +219,7 @@ const AppProvider = ({ children }) => {
         addToCart,
         totalQuantity,
         cartItems,
+        toggleCartItemQuantity,
       }}
     >
       {children}
