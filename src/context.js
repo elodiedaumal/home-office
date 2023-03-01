@@ -111,6 +111,7 @@ const AppProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
+  const [cartId, setCartId] = useState('');
 
   let foundCartProduct;
   let index;
@@ -135,7 +136,7 @@ const AppProvider = ({ children }) => {
     setTotalPrice(
       (prevTotalPrice) => prevTotalPrice + product.price * quantity
     );
-    setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity);
+    setTotalQuantity((prevTotalQuantities) => prevTotalQuantities + quantity);
 
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
@@ -145,14 +146,16 @@ const AppProvider = ({ children }) => {
             quantity: cartProduct.quantity + quantity,
           };
       });
+
       setCartItems(updatedCartItems);
     } else {
       product.quantity = quantity;
       product.color = color;
-      setCartItems([...cartItems, { ...product }]);
-      setAmountsingle(1);
+
+      setCartItems([...cartItems, { ...product, id: product.id + color }]);
     }
   };
+
   const deleteCartItem = (product) => {
     foundCartProduct = cartItems.find((item) => item.id === product.id);
     const newCartItems = cartItems.filter((item) => item.id !== product.id);
@@ -172,20 +175,27 @@ const AppProvider = ({ children }) => {
     const newCartItems = cartItems.filter((item) => item.id !== id);
 
     if (value === 'inc') {
-      if (foundCartProduct.quantity < foundCartProduct.stock)
+      if (foundCartProduct.quantity < foundCartProduct.stock) {
         setCartItems([
           ...newCartItems,
-          { ...foundCartProduct, quantity: foundCartProduct.quantity + 1 },
+          {
+            ...foundCartProduct,
+            quantity: foundCartProduct.quantity + 1,
+          },
         ]);
-      setTotalPrice(
-        (prevTotalPrice) => prevTotalPrice + foundCartProduct.price
-      );
-      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + 1);
+        setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + 1);
+        setTotalPrice(
+          (prevTotalPrice) => prevTotalPrice + foundCartProduct.price
+        );
+      }
     } else if (value === 'desc') {
       if (foundCartProduct.quantity > 1) {
         setCartItems([
           ...newCartItems,
-          { ...foundCartProduct, quantity: foundCartProduct.quantity - 1 },
+          {
+            ...foundCartProduct,
+            quantity: foundCartProduct.quantity - 1,
+          },
         ]);
         setTotalPrice(
           (prevTotalPrice) => prevTotalPrice - foundCartProduct.price
@@ -243,6 +253,7 @@ const AppProvider = ({ children }) => {
         setFfilterColor,
         clearCart,
         deleteCartItem,
+        cartId,
       }}
     >
       {children}
