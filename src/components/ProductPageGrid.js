@@ -1,6 +1,5 @@
 import React from 'react';
 import ProductPageCards from '../components/ProductPageCards';
-import { useGlobalContext } from '../context';
 
 const ProductPageGrid = (props) => {
   const {
@@ -28,16 +27,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
-            .filter(
-              (item) =>
-                item.price <
-                sliderValue *
-                  sliderValue *
-                  sliderValue *
-                  sliderValue *
-                  100 *
-                  100
-            )
+            .filter((item) => item.price < sliderValue * 100)
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
@@ -100,20 +90,7 @@ const ProductPageGrid = (props) => {
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
         : ''}
-      {value === 'price-lowest' &&
-      selectCategory === 'all' &&
-      selectCompany === 'all' &&
-      selectColors === 'all'
-        ? [...products]
-            .sort((a, b) => a.price - b.price)
-            .filter((item) =>
-              item.name.toLowerCase().includes(text.toLowerCase())
-            )
-            .filter((item) => item.price < sliderValue * 100)
-            .map((item) => (
-              <ProductPageCards key={item.id} item={item}></ProductPageCards>
-            ))
-        : ''}
+
       {value === 'price-lowest' &&
       selectCategory === 'all' &&
       selectCompany === 'all' &&

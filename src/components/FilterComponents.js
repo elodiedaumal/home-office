@@ -26,10 +26,6 @@ const FilterComponents = (props) => {
 
   const [colors, setColors] = useState(allColors);
 
-  const maxprice = (
-    Math.max(...products.map((item) => item.price)) / 100
-  ).toLocaleString('de-DE', { maximumFractionDigits: 2 });
-
   const handleSubmit = (e) => {
     setText(e.target.value);
   };

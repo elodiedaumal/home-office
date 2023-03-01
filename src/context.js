@@ -52,7 +52,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     getProducts();
-  }, [text]);
+  }, []);
 
   async function getSingleProduct(url) {
     setLoading(true);
