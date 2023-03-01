@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { useGlobalContext } from '../context';
 import styled from 'styled-components';
 
-import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 
-const Colorssingleproduct = ({ colors }) => {
-  const { loading, bgcolor, setBgcolor } = useGlobalContext();
+const Colorssingleproduct = ({ colors = [] }) => {
+  const { loading } = useGlobalContext();
+  const [bgcolor, setBgcolor] = useState(colors[0]);
 
   if (loading) {
     return <div className='loading'></div>;
   }
-  setBgcolor(colors[0]);
+
   return (
     <>
       <ColorSection>

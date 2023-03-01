@@ -1,15 +1,21 @@
 import React, { useRef } from 'react';
 import PageHeader from '../components/PageHeader';
 import styled from 'styled-components';
-import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
+import { FaMinus, FaPlus } from 'react-icons/fa';
 import { TrashIcon } from '@heroicons/react/24/solid';
 import { useGlobalContext } from '../context';
 import { Link } from 'react-router-dom';
 
 const Cart = (item) => {
   const cartRef = useRef();
-  const { cartItems, totalPrice, toggleCartItemQuantity, totalQuantity } =
-    useGlobalContext();
+  const {
+    cartItems,
+    totalPrice,
+    toggleCartItemQuantity,
+    totalQuantity,
+    clearCart,
+    deleteCartItem,
+  } = useGlobalContext();
   let shippingTotal = (Math.round(5.15 * totalQuantity * 100) / 100).toFixed(2);
   let orderTotal = (
     Math.round((5.15 * totalQuantity + totalPrice / 100) * 100) / 100
@@ -35,11 +41,16 @@ const Cart = (item) => {
               <CartDisplay key={item.id}>
                 <ImgInfo>
                   <Img src={item.images[0].url} alt={item.name} />
-                  <div>
+                  <InfoCart>
                     <Name>{item.name}</Name>
-                    <p>Color:</p>
+                    <Colordisplay>
+                      <p>Color:</p>
+                      <ColorCheckcontainer
+                        backgroundColor={item.color}
+                      ></ColorCheckcontainer>
+                    </Colordisplay>
                     <PriceMobile>${item.price / 100}</PriceMobile>
-                  </div>
+                  </InfoCart>
                 </ImgInfo>
                 <PriceDesktop>${item.price / 100}</PriceDesktop>
                 <AddContainer>
@@ -58,7 +69,7 @@ const Cart = (item) => {
                 <SubtotalCart>
                   $ {(item.quantity * item.price) / 100}
                 </SubtotalCart>
-                <TrashContainer>
+                <TrashContainer onClick={() => deleteCartItem(item)}>
                   <TrashIcon />
                 </TrashContainer>
               </CartDisplay>
@@ -70,7 +81,9 @@ const Cart = (item) => {
             <Link to='/products'>
               <ButtonShopping className='btn'>Continue Shopping</ButtonShopping>
             </Link>
-            <ButtonClear className='btn'>Clear The Cart</ButtonClear>
+            <ButtonClear onClick={clearCart} className='btn'>
+              Clear The Cart
+            </ButtonClear>
           </ButtonContainer>
         </Flex>
         <TotalSection>
@@ -106,14 +119,14 @@ const CartSection = styled.section`
   margin: 2rem auto;
   max-width: 1240px;
   padding: 1rem;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     padding: 0rem;
   }
 `;
 const TotalSection = styled.section`
   width: 95vw;
   margin: 3rem auto;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     max-width: 1240px;
     display: flex;
     justify-content: flex-end;
@@ -122,7 +135,7 @@ const TotalSection = styled.section`
 `;
 const Titles = styled.header`
   display: none;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr 27px;
     gap: 2rem;
@@ -140,7 +153,7 @@ const CartDisplay = styled.div`
   max-width: 1240px;
   width: 95vw;
   margin-bottom: 3rem;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     gap: 2rem;
     grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
   }
@@ -154,7 +167,7 @@ const TotalContainer = styled.div`
   width: 95vw;
   gap: 1rem;
   margin-bottom: 4rem;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     max-width: 500px;
   }
 `;
@@ -166,17 +179,20 @@ const ImgInfo = styled.div`
   justify-self: left;
   text-transform: capitalize;
   grid-template-rows: 75px;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     grid-template-columns: auto 1fr;
   }
+`;
+const InfoCart = styled.div`
+  display: grid;
+  align-items: center;
+  gap: 0.2rem;
 `;
 const Name = styled.p`
   font-weight: bold;
   // font-size: 0.8rem;
   letter-spacing: 1.2px;
   color: #102a42;
-  @media (min-width: 600px) {
-  }
 `;
 const Flex = styled.div`
   display: grid;
@@ -184,7 +200,7 @@ const Flex = styled.div`
   color: #617d98;
   font-size: 0.8rem;
   letter-spacing: 1.2px;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     font-size: 1.2rem;
   }
 `;
@@ -233,21 +249,39 @@ const AddText = styled.p`
   font-size: 1.5rem;
   font-weight: bold;
   color: black;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     font-size: 2rem;
   }
+`;
+
+const ColorCheckcontainer = styled.div`
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 25%;
+  border: none;
+  margin-top: 0.2rem;
+  background: ${(props) => props.backgroundColor || 'black'};
+  @media (min-width: 800px) {
+    height: 1rem;
+    width: 1rem;
+  }
+`;
+const Colordisplay = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
 const PriceMobile = styled.p`
   color: #ab7a5f;
   font-weight: bold;
   letter-spacing: 1.5px;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: none;
   }
 `;
 const PriceDesktop = styled.p`
   display: none;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: inline-block;
     color: #ab7a5f;
     font-weight: bold;
@@ -256,7 +290,7 @@ const PriceDesktop = styled.p`
 `;
 const SubtotalCart = styled.p`
   display: none;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: inline-block;
   }
 `;
@@ -264,7 +298,7 @@ const Img = styled.img`
   width: 90px;
   max-height: 75px;
   border-radius: 5px;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     width: 150px;
     max-height: 100px;
   }
@@ -276,7 +310,7 @@ const TrashContainer = styled.div`
   color: #fff;
   padding: 5px;
   border-radius: 5px;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     height: 2rem;
     width: 2rem;
   }
@@ -290,14 +324,14 @@ const Subtotal = styled.div`
   grid-template-columns: 230px 1fr;
   font-weight: bold;
   letter-spacing: 1.5px;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     grid-template-columns: 250px 1fr;
   }
 `;
 const ShippingFee = styled.div`
   display: grid;
   grid-template-columns: 230px 1fr;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     grid-template-columns: 250px 1fr;
   }
 `;
@@ -308,7 +342,7 @@ const OrderTotal = styled.div`
   font-weight: bold;
   margin: 1rem 0 1rem 0;
   letter-spacing: 1.5px;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     font-size: 1.8rem;
     grid-template-columns: 250px 1fr;
   }
@@ -324,7 +358,7 @@ const TotalButton = styled.button`
   width: 100%;
   padding: 1rem;
   font-weight: bold;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     font-size: 1.1rem;
   }
 `;

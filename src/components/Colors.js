@@ -8,8 +8,8 @@ const Colors = ({ colors }) => {
     setSelectColors,
     selectColors,
     selectAllColors,
-    setBgcolor,
-    bgcolor,
+    filterColor,
+    setFfilterColor,
   } = useGlobalContext();
 
   return (
@@ -29,10 +29,10 @@ const Colors = ({ colors }) => {
             <ColorCheckcontainer
               key={index}
               backgroundColor={colors}
-              className={bgcolor === color ? 'active' : ''}
+              className={filterColor === color ? 'active' : ''}
               value={colors}
               onClick={(e) => {
-                setBgcolor(color);
+                setFfilterColor(color);
                 setSelectColors(e.target.value);
               }}
             >

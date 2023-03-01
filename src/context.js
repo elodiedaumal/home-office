@@ -19,7 +19,7 @@ const AppProvider = ({ children }) => {
   const [selectShipping, setSelectShipping] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState('price-lowest');
-  const [bgcolor, setBgcolor] = useState([]);
+  const [filterColor, setFfilterColor] = useState([]);
 
   //////////////////////////////////////////////////////
   // NAVBAR CONTEXT
@@ -90,12 +90,14 @@ const AppProvider = ({ children }) => {
     setSelectCategory('all');
     setSelectCompany('all');
     setSelectColors('all');
-    setBgcolor('');
+
+    setFfilterColor('');
   };
 
   const selectAllColors = (e) => {
     setSelectColors('all');
-    setBgcolor('');
+
+    setFfilterColor('');
   };
   const selectFreeShipping = (e) => {
     setSelectShipping(!selectShipping);
@@ -109,6 +111,7 @@ const AppProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
+
   let foundCartProduct;
   let index;
 
@@ -126,7 +129,7 @@ const AppProvider = ({ children }) => {
     if (amountsingle <= 1) setAmountsingle(1);
   };
 
-  const addToCart = (product, quantity) => {
+  const addToCart = (product, quantity, color) => {
     const checkProductInCart = cartItems.find((item) => item.id === product.id);
 
     setTotalPrice(
@@ -145,9 +148,22 @@ const AppProvider = ({ children }) => {
       setCartItems(updatedCartItems);
     } else {
       product.quantity = quantity;
+      product.color = color;
       setCartItems([...cartItems, { ...product }]);
+      setAmountsingle(1);
     }
-    setAmountsingle(1);
+  };
+  const deleteCartItem = (product) => {
+    foundCartProduct = cartItems.find((item) => item.id === product.id);
+    const newCartItems = cartItems.filter((item) => item.id !== product.id);
+    setTotalPrice(
+      (prevTotalPrice) =>
+        prevTotalPrice - foundCartProduct.price * foundCartProduct.quantity
+    );
+    setTotalQuantity(
+      (prevTotalQuantity) => prevTotalQuantity - foundCartProduct.quantity
+    );
+    setCartItems(newCartItems);
   };
 
   const toggleCartItemQuantity = (id, value) => {
@@ -177,6 +193,11 @@ const AppProvider = ({ children }) => {
         setTotalQuantity((prevTotalQuantity) => prevTotalQuantity - 1);
       }
     }
+  };
+  const clearCart = () => {
+    setCartItems([]);
+    setTotalQuantity(0);
+    setTotalPrice(0);
   };
 
   return (
@@ -208,8 +229,6 @@ const AppProvider = ({ children }) => {
         isActive,
         clearfilter,
         selectAllColors,
-        setBgcolor,
-        bgcolor,
         selectFreeShipping,
         selectShipping,
         deacresebtn,
@@ -220,6 +239,10 @@ const AppProvider = ({ children }) => {
         totalQuantity,
         cartItems,
         toggleCartItemQuantity,
+        filterColor,
+        setFfilterColor,
+        clearCart,
+        deleteCartItem,
       }}
     >
       {children}

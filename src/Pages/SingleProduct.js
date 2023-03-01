@@ -6,7 +6,7 @@ import PageHeader from '../components/PageHeader';
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../context';
 import { useParams } from 'react-router-dom';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+
 import Picturesingle from '../components/Picturesingle';
 import Error from './Error';
 import Colorssingleproduct from '../components/colorssingleproduct.js';
@@ -16,7 +16,7 @@ import AddtoCart from '../components/AddtoCart';
 const SingleProduct = () => {
   const { loading, getSingleProduct, singleProduct, error } =
     useGlobalContext();
-  const { stock, price, images, reviews, stars, name, colors } = singleProduct;
+  const { images, colors } = singleProduct;
 
   let { id } = useParams();
 
@@ -67,8 +67,8 @@ const SingleProduct = () => {
             </Info>
           </SectionInfo>
           <Line></Line>
-          <Colorssingleproduct colors={colors} />
-          <AddtoCart singleProduct={singleProduct} />
+          {/* <Colorssingleproduct colors={colors} /> */}
+          <AddtoCart singleProduct={singleProduct} colors={colors} />
         </GridRight>
       </Section>
     </>
