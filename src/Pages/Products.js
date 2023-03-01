@@ -18,6 +18,7 @@ const Products = () => {
     selectCategory,
     selectCompany,
     selectColors,
+    sliderValue,
   } = useGlobalContext();
 
   if (loading) {
@@ -40,6 +41,7 @@ const Products = () => {
             selectCategory={selectCategory}
             selectCompany={selectCompany}
             selectColors={selectColors}
+            sliderValue={sliderValue}
           />
         </Section>
       </Container>

@@ -16,7 +16,7 @@ const AppProvider = ({ children }) => {
   const [selectCategory, setSelectCategory] = useState('all');
   const [selectCompany, setSelectCompany] = useState('all');
   const [selectColors, setSelectColors] = useState('all');
-  const [selectShipping, setSelectShipping] = useState(false);
+  const [sliderValue, setSliderValue] = useState(3100);
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState('price-lowest');
   const [filterColor, setFfilterColor] = useState([]);
@@ -98,9 +98,6 @@ const AppProvider = ({ children }) => {
     setSelectColors('all');
 
     setFfilterColor('');
-  };
-  const selectFreeShipping = (e) => {
-    setSelectShipping(!selectShipping);
   };
 
   //////////////////////////////////////////////////////
@@ -255,8 +252,8 @@ const AppProvider = ({ children }) => {
         isActive,
         clearfilter,
         selectAllColors,
-        selectFreeShipping,
-        selectShipping,
+        sliderValue,
+        setSliderValue,
         deacresebtn,
         amountsingle,
         increasebtn,

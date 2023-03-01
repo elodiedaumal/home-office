@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProductPageCards from '../components/ProductPageCards';
-import Sortbybar from './Sortbybar';
+import { useGlobalContext } from '../context';
 
 const ProductPageGrid = (props) => {
   const {
@@ -11,6 +11,7 @@ const ProductPageGrid = (props) => {
     value,
     selectCompany,
     selectColors,
+    sliderValue,
   } = props;
 
   return loading ? (
@@ -26,6 +27,16 @@ const ProductPageGrid = (props) => {
             .filter((item) => item.colors.includes(selectColors))
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
+            )
+            .filter(
+              (item) =>
+                item.price <
+                sliderValue *
+                  sliderValue *
+                  sliderValue *
+                  sliderValue *
+                  100 *
+                  100
             )
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
@@ -48,6 +59,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -65,6 +77,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -82,6 +95,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -95,7 +109,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -109,7 +123,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -123,7 +137,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -137,7 +151,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -151,7 +165,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.name.toLowerCase().includes(text.toLowerCase())
             )
-
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -166,6 +180,7 @@ const ProductPageGrid = (props) => {
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -180,6 +195,7 @@ const ProductPageGrid = (props) => {
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -194,6 +210,7 @@ const ProductPageGrid = (props) => {
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -208,6 +225,7 @@ const ProductPageGrid = (props) => {
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -222,6 +240,7 @@ const ProductPageGrid = (props) => {
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -236,6 +255,7 @@ const ProductPageGrid = (props) => {
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -250,6 +270,7 @@ const ProductPageGrid = (props) => {
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -264,6 +285,7 @@ const ProductPageGrid = (props) => {
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -280,6 +302,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -296,6 +319,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -312,6 +336,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -328,6 +353,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -341,6 +367,7 @@ const ProductPageGrid = (props) => {
               item.name.toLowerCase().includes(text.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -354,6 +381,7 @@ const ProductPageGrid = (props) => {
               item.name.toLowerCase().includes(text.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -367,6 +395,7 @@ const ProductPageGrid = (props) => {
               item.name.toLowerCase().includes(text.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -380,6 +409,7 @@ const ProductPageGrid = (props) => {
               item.name.toLowerCase().includes(text.toLowerCase())
             )
             .filter((item) => item.colors.includes(selectColors))
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -395,6 +425,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -410,6 +441,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -425,6 +457,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -438,6 +471,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.company.toLowerCase().includes(selectCompany.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -453,6 +487,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -468,6 +503,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -483,6 +519,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))
@@ -496,6 +533,7 @@ const ProductPageGrid = (props) => {
             .filter((item) =>
               item.category.toLowerCase().includes(selectCategory.toLowerCase())
             )
+            .filter((item) => item.price < sliderValue * 100)
             .map((item) => (
               <ProductPageCards key={item.id} item={item}></ProductPageCards>
             ))

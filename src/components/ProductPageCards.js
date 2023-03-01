@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 import { Link } from 'react-router-dom';
@@ -8,46 +8,44 @@ const ProductPageCards = (filteredProduct) => {
   const { theme } = useGlobalContext();
 
   return (
-    <>
-      <Link to={theme === 'grid' ? `/products/${filteredProduct.item.id}` : ''}>
-        <Grid className={theme} key={filteredProduct.item.id}>
-          <ImgContainer className={theme}>
-            <Img
-              className={theme}
-              src={filteredProduct.item.image}
-              alt={filteredProduct.item.name}
-            />
-            {theme === 'grid' ? (
-              <Link to={filteredProduct.item.id} className='loupe-container'>
-                <FaSearch />
-              </Link>
-            ) : (
-              ''
-            )}
-          </ImgContainer>
+    <Link to={theme === 'grid' ? `/products/${filteredProduct.item.id}` : ''}>
+      <Grid className={theme} key={filteredProduct.item.id}>
+        <ImgContainer className={theme}>
+          <Img
+            className={theme}
+            src={filteredProduct.item.image}
+            alt={filteredProduct.item.name}
+          />
+          {theme === 'grid' ? (
+            <Link to={filteredProduct.item.id} className='loupe-container'>
+              <FaSearch />
+            </Link>
+          ) : (
+            ''
+          )}
+        </ImgContainer>
 
-          <ProductInfo className={theme}>
-            <ProductName className={theme}>
-              {filteredProduct.item.name}
-            </ProductName>
-            <Price className={theme}>${filteredProduct.item.price / 100}</Price>
+        <ProductInfo className={theme}>
+          <ProductName className={theme}>
+            {filteredProduct.item.name}
+          </ProductName>
+          <Price className={theme}>${filteredProduct.item.price / 100}</Price>
 
-            {theme !== 'grid' ? (
-              <p>{filteredProduct.item.description.substring(0, 150)}...</p>
-            ) : (
-              ''
-            )}
-            {theme !== 'grid' ? (
-              <Link to={`/products/${filteredProduct.item.name}`}>
-                <ButtonList className='btn '>DETAILS</ButtonList>
-              </Link>
-            ) : (
-              ''
-            )}
-          </ProductInfo>
-        </Grid>
-      </Link>
-    </>
+          {theme !== 'grid' ? (
+            <p>{filteredProduct.item.description.substring(0, 150)}...</p>
+          ) : (
+            ''
+          )}
+          {theme !== 'grid' ? (
+            <Link to={`/products/${filteredProduct.item.name}`}>
+              <ButtonList className='btn '>DETAILS</ButtonList>
+            </Link>
+          ) : (
+            ''
+          )}
+        </ProductInfo>
+      </Grid>
+    </Link>
   );
 };
 

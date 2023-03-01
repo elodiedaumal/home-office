@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactSlider from 'react-slider';
 import styled from 'styled-components';
+import { useGlobalContext } from '../context';
 
 const Slider = () => {
+  const { sliderValue, setSliderValue } = useGlobalContext();
+  const onSliderChange = (val) => {
+    setSliderValue(val);
+  };
+
   return (
     <SliderContainer>
+      <Price>${sliderValue}</Price>
       <ReactSlidercontainer
         className='customSlider'
         trackClassName='customSlider-track'
         thumbClassName='customSlider-thumb'
-        // value={value}
-        // onChange={handleChange}
+        valueLabelDisplay='on'
+        defaultValue={3100}
+        step={11.99}
+        min={0}
+        max={3100}
+        onChange={(val) => onSliderChange(val)}
+
         // defaultValue={70}
       />
     </SliderContainer>
@@ -23,6 +35,9 @@ const SliderContainer = styled.div`
   max-width: 80%;
   margin-top: 1rem;
   margin-bottom: 2rem;
+`;
+const Price = styled.p`
+  margin-bottom: 8px;
 `;
 
 const ReactSlidercontainer = styled(ReactSlider)`

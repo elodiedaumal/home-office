@@ -8,8 +8,7 @@ import Colors from '../components/Colors';
 import Slider from './Slider';
 
 const FilterComponents = (props) => {
-  const { products, setText, clearfilter, selectFreeShipping } =
-    useGlobalContext();
+  const { products, setText, clearfilter } = useGlobalContext();
 
   const allCategories = [
     'all',
@@ -60,7 +59,7 @@ const FilterComponents = (props) => {
       </div>
       <div>
         <Category>Price</Category>
-        <p>$0-${maxprice}</p>
+
         <Slider />
       </div>
 
@@ -92,12 +91,6 @@ const Category = styled.h5`
   font-weight: bold;
   font-size: 1.4rem;
   margin-bottom: 1rem;
-`;
-const Shipping = styled.div`
-  display: flex;
-  gap: 3rem;
-  margin-top: 1rem;
-  align-items: center;
 `;
 
 const Button = styled.button`
