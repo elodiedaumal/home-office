@@ -133,27 +133,43 @@ const AppProvider = ({ children }) => {
       (item) => item.id === product.id + color
     );
 
-    setTotalPrice(
-      (prevTotalPrice) => prevTotalPrice + product.price * quantity
-    );
-    setTotalQuantity((prevTotalQuantities) => prevTotalQuantities + quantity);
-
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
-        if (cartProduct.id === product.id + color)
+        if (
+          cartProduct.id === product.id + color &&
+          product.stock < cartProduct.stock
+        ) {
+          setTotalPrice(
+            (prevTotalPrice) => prevTotalPrice + product.price * quantity
+          );
+          setTotalQuantity(
+            (prevTotalQuantities) => prevTotalQuantities + quantity
+          );
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
           };
+        } else {
+          setTotalPrice((prevTotalPrice) => prevTotalPrice);
+          setTotalQuantity((prevTotalQuantities) => prevTotalQuantities);
+          return {
+            ...cartProduct,
+            quantity: cartProduct.quantity,
+          };
+        }
       });
 
       setCartItems(updatedCartItems);
     } else {
       product.quantity = quantity;
       product.color = color;
-
+      setTotalPrice(
+        (prevTotalPrice) => prevTotalPrice + product.price * quantity
+      );
+      setTotalQuantity((prevTotalQuantities) => prevTotalQuantities + quantity);
       setCartItems([...cartItems, { ...product, id: product.id + color }]);
     }
+    setAmountsingle(1);
   };
 
   const deleteCartItem = (product) => {

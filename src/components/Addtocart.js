@@ -30,24 +30,28 @@ const AddtoCartreal = ({ singleProduct, colors = [] }) => {
           })}
         </ColorContainer>
       </ColorSection>
-      <CartContainer>
-        <AddContainer>
-          <Button onClick={deacresebtn}>
-            <FaMinus />
-          </Button>
-          <AddText>{amountsingle}</AddText>
-          <Button onClick={increasebtn}>
-            <FaPlus />
-          </Button>
-        </AddContainer>
-        <Link
-          to='/cart'
-          className='btn'
-          onClick={() => addToCart(singleProduct, amountsingle, bgcolor)}
-        >
-          Add to cart
-        </Link>
-      </CartContainer>
+      {singleProduct.stock === 0 ? (
+        <OutOfOrder>Product out of Order</OutOfOrder>
+      ) : (
+        <CartContainer>
+          <AddContainer>
+            <Button onClick={deacresebtn}>
+              <FaMinus />
+            </Button>
+            <AddText>{amountsingle}</AddText>
+            <Button onClick={increasebtn}>
+              <FaPlus />
+            </Button>
+          </AddContainer>
+          <Link
+            to='/cart'
+            className='btn'
+            onClick={() => addToCart(singleProduct, amountsingle, bgcolor)}
+          >
+            Add to cart
+          </Link>
+        </CartContainer>
+      )}
     </>
   );
 };
@@ -114,4 +118,8 @@ const ColorCheckcontainer = styled.button`
 const ColorContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+`;
+const OutOfOrder = styled.p`
+  color: red;
+  font-weight: bold;
 `;
