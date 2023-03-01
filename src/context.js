@@ -111,10 +111,8 @@ const AppProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
-  const [cartId, setCartId] = useState('');
 
   let foundCartProduct;
-  let index;
 
   const increasebtn = () => {
     if (amountsingle < singleProduct.stock) {
@@ -131,7 +129,9 @@ const AppProvider = ({ children }) => {
   };
 
   const addToCart = (product, quantity, color) => {
-    const checkProductInCart = cartItems.find((item) => item.id === product.id);
+    const checkProductInCart = cartItems.find(
+      (item) => item.id === product.id + color
+    );
 
     setTotalPrice(
       (prevTotalPrice) => prevTotalPrice + product.price * quantity
@@ -140,7 +140,7 @@ const AppProvider = ({ children }) => {
 
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
-        if (cartProduct.id === product.id)
+        if (cartProduct.id === product.id + color)
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
@@ -171,7 +171,7 @@ const AppProvider = ({ children }) => {
 
   const toggleCartItemQuantity = (id, value) => {
     foundCartProduct = cartItems.find((item) => item.id === id);
-    index = cartItems.findIndex((product) => product.id === id);
+
     const newCartItems = cartItems.filter((item) => item.id !== id);
 
     if (value === 'inc') {
@@ -253,7 +253,6 @@ const AppProvider = ({ children }) => {
         setFfilterColor,
         clearCart,
         deleteCartItem,
-        cartId,
       }}
     >
       {children}

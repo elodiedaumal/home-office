@@ -37,43 +37,45 @@ const Cart = (item) => {
           {totalQuantity === 0 ? (
             <p>No Item in you cart</p>
           ) : (
-            cartItems.map((item) => (
-              <CartDisplay key={item.id}>
-                <ImgInfo>
-                  <Img src={item.images[0].url} alt={item.name} />
-                  <InfoCart>
-                    <Name>{item.name}</Name>
-                    <Colordisplay>
-                      <p>Color:</p>
-                      <ColorCheckcontainer
-                        backgroundColor={item.color}
-                      ></ColorCheckcontainer>
-                    </Colordisplay>
-                    <PriceMobile>${item.price / 100}</PriceMobile>
-                  </InfoCart>
-                </ImgInfo>
-                <PriceDesktop>${item.price / 100}</PriceDesktop>
-                <AddContainer>
-                  <Button
-                    onClick={() => toggleCartItemQuantity(item.id, 'desc')}
-                  >
-                    <FaMinus />
-                  </Button>
-                  <AddText>{item.quantity}</AddText>
-                  <Button
-                    onClick={() => toggleCartItemQuantity(item.id, 'inc')}
-                  >
-                    <FaPlus />
-                  </Button>
-                </AddContainer>
-                <SubtotalCart>
-                  $ {(item.quantity * item.price) / 100}
-                </SubtotalCart>
-                <TrashContainer onClick={() => deleteCartItem(item)}>
-                  <TrashIcon />
-                </TrashContainer>
-              </CartDisplay>
-            ))
+            cartItems
+              .sort((a, b) => a.id.localeCompare(b.id))
+              .map((item) => (
+                <CartDisplay key={item.id}>
+                  <ImgInfo>
+                    <Img src={item.images[0].url} alt={item.name} />
+                    <InfoCart>
+                      <Name>{item.name}</Name>
+                      <Colordisplay>
+                        <p>Color:</p>
+                        <ColorCheckcontainer
+                          backgroundColor={item.color}
+                        ></ColorCheckcontainer>
+                      </Colordisplay>
+                      <PriceMobile>${item.price / 100}</PriceMobile>
+                    </InfoCart>
+                  </ImgInfo>
+                  <PriceDesktop>${item.price / 100}</PriceDesktop>
+                  <AddContainer>
+                    <Button
+                      onClick={() => toggleCartItemQuantity(item.id, 'desc')}
+                    >
+                      <FaMinus />
+                    </Button>
+                    <AddText>{item.quantity}</AddText>
+                    <Button
+                      onClick={() => toggleCartItemQuantity(item.id, 'inc')}
+                    >
+                      <FaPlus />
+                    </Button>
+                  </AddContainer>
+                  <SubtotalCart>
+                    $ {(item.quantity * item.price) / 100}
+                  </SubtotalCart>
+                  <TrashContainer onClick={() => deleteCartItem(item)}>
+                    <TrashIcon />
+                  </TrashContainer>
+                </CartDisplay>
+              ))
           )}
 
           <Line></Line>
