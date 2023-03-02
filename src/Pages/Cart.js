@@ -121,7 +121,6 @@ const CartSection = styled.section`
   margin: 2rem auto;
   max-width: 1240px;
   padding: 1rem;
-
   @media (min-width: 800px) {
     padding: 0rem;
   }
@@ -376,9 +375,12 @@ const TotalButton = styled.button`
   width: 100%;
   padding: 1rem;
   font-weight: bold;
-  max-width: 370px;
+  max-width: 320px;
   @media (min-width: 800px) {
     font-size: 1.1rem;
     max-width: 800px;
+  }
+  @media (max-width: 400px) {
+    width: 302px;
   }
 `;
