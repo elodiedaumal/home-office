@@ -7,11 +7,7 @@ const About = () => {
   return (
     <>
       <PageHeader title='About' />
-      <Header>
-        <HeaderText>
-          <Title>Home</Title> / About
-        </HeaderText>
-      </Header>
+
       <Container>
         <Image />
         <div>

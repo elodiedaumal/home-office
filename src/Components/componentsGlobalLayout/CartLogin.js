@@ -1,11 +1,11 @@
 import React from 'react';
 import { useGlobalContext } from '../../context';
 import styled from 'styled-components';
-import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
+import { FaShoppingCart, FaUserPlus, FaUserMinus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export const CartLogin = () => {
-  const { totalQuantity } = useGlobalContext();
+  const { totalQuantity, LoggedIn, login } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -18,8 +18,16 @@ export const CartLogin = () => {
           </Cart>
         </CartWrapper>
       </Link>
-      <CartWrapper>
-        Login <FaUserPlus className='cart-icon' />
+      <CartWrapper onClick={LoggedIn}>
+        {!login ? (
+          <>
+            <p>Login</p> <FaUserPlus className='cart-icon' />
+          </>
+        ) : (
+          <>
+            <p>Logout</p> <FaUserMinus className='cart-icon' />
+          </>
+        )}
       </CartWrapper>
     </Wrapper>
   );
@@ -40,6 +48,7 @@ const Wrapper = styled.div`
 
 const CartWrapper = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 
 const CartNumber = styled.span`

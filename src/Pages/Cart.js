@@ -15,11 +15,9 @@ const Cart = (item) => {
     totalQuantity,
     clearCart,
     deleteCartItem,
+    shippingTotal,
+    orderTotal,
   } = useGlobalContext();
-  let shippingTotal = (Math.round(5.15 * totalQuantity * 100) / 100).toFixed(2);
-  let orderTotal = (
-    Math.round((5.15 * totalQuantity + totalPrice / 100) * 100) / 100
-  ).toFixed(2);
 
   return (
     <>
@@ -107,7 +105,10 @@ const Cart = (item) => {
                 </OrderTotal>
               </TotalGrid>
             </TotalBorder>
-            <TotalButton className='btn'>Proceed to checkout</TotalButton>
+
+            <TotalButton to='/checkout' className='btn'>
+              Proceed to checkout
+            </TotalButton>
           </TotalContainer>
         </TotalSection>
       </CartSection>
@@ -371,7 +372,7 @@ const TotalBorder = styled.div`
     padding: 1.5rem 3rem;
   }
 `;
-const TotalButton = styled.button`
+const TotalButton = styled(Link)`
   width: 100%;
   padding: 1rem;
   font-weight: bold;

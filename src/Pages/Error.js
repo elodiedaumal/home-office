@@ -19,6 +19,7 @@ const Section = styled.section`
   margin: 2rem auto;
   max-width: 1240px;
   padding: 2rem;
+  height: 100vh;
 `;
 const Text = styled.p`
   font-size: 2rem;

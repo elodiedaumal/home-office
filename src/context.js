@@ -20,6 +20,7 @@ const AppProvider = ({ children }) => {
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState('price-lowest');
   const [filterColor, setFfilterColor] = useState([]);
+  const [login, setLogin] = useState(false);
 
   //////////////////////////////////////////////////////
   // NAVBAR CONTEXT
@@ -31,6 +32,10 @@ const AppProvider = ({ children }) => {
 
   const closeSidebar = () => {
     setIsSidebarOpen(false);
+  };
+
+  const LoggedIn = () => {
+    setLogin(!login);
   };
 
   //////////////////////////////////////////////////////
@@ -222,6 +227,11 @@ const AppProvider = ({ children }) => {
     setTotalPrice(0);
   };
 
+  let shippingTotal = (Math.round(5.15 * totalQuantity * 100) / 100).toFixed(2);
+  let orderTotal = (
+    Math.round((5.15 * totalQuantity + totalPrice / 100) * 100) / 100
+  ).toFixed(2);
+
   return (
     <AppContext.Provider
       value={{
@@ -265,6 +275,10 @@ const AppProvider = ({ children }) => {
         setFfilterColor,
         clearCart,
         deleteCartItem,
+        login,
+        LoggedIn,
+        shippingTotal,
+        orderTotal,
       }}
     >
       {children}

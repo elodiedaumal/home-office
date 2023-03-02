@@ -3,7 +3,7 @@ import { useGlobalContext } from '../../context';
 import styled from 'styled-components';
 
 const Picturesingle = ({ images = [{ url: '' }] }) => {
-  const { singleProduct } = useGlobalContext();
+  // const { singleProduct } = useGlobalContext();
 
   const [mainPicture, setMainPicture] = useState([images[0].url]);
 
@@ -12,13 +12,13 @@ const Picturesingle = ({ images = [{ url: '' }] }) => {
       <MainPicture src={mainPicture} />
       <ThumbnailContainer>
         {images.map((picture) => {
-          const { id, url } = picture;
+          const { id, url, name } = picture;
 
           return (
             <Imgthumb
               key={id}
               src={url}
-              alt={singleProduct.name}
+              alt={name}
               onClick={() => setMainPicture(url)}
               className={mainPicture === url ? 'active' : ''}
             />
