@@ -33,20 +33,6 @@ const About = () => {
 
 export default About;
 
-const Header = styled.header`
-  background-color: #eaded7;
-  padding: 4.4rem 2rem;
-  color: #453227;
-`;
-const Title = styled.span`
-  color: #795744;
-`;
-
-const HeaderText = styled.h1`
-  margin: 0 auto;
-  max-width: 1240px;
-`;
-
 const Image = styled.div`
   background-image: url(${Img});
   height: 500px;
@@ -59,11 +45,12 @@ const Container = styled.div`
   padding: 0 2rem;
   display: grid;
   gap: 4rem ;
-  height:100vh;
+
   @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
       max-width: 1240px;
        padding: 0;
+         height:100vh;
   
 `;
 
