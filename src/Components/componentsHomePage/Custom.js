@@ -81,6 +81,9 @@ const Container = styled.div`
     font-size: 1.1rem;
     line-height: 1.5;
   }
+  @media (min-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 const Title = styled.h3`
   font-size: 2rem;

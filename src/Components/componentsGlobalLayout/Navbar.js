@@ -1,15 +1,9 @@
-import { React, useState } from 'react';
-import { useGlobalContext } from '../context';
+import React from 'react';
+import { useGlobalContext } from '../../context';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  FaBars,
-  FaShoppingCart,
-  FaUserCheck,
-  FaUserPlus,
-  FaTimes,
-} from 'react-icons/fa';
-import links from '../links';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import links from '../../links';
 import { CartLogin } from './CartLogin';
 
 const Navbar = () => {
@@ -60,7 +54,6 @@ const Nav = styled.nav`
   max-width: 1240px;
   height:5rem;
   margin 0 auto
- 
   }
 `;
 
@@ -113,5 +106,4 @@ const Logo = styled.p`
 const Cart = styled.div`
  @media (max-width: 700px) {
       display: none;
-  
     `;

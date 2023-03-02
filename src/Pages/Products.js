@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 
-import PageHeader from '../components/PageHeader';
-import ProductPageGrid from '../components/ProductPageGrid';
-import FilterComponents from '../components/FilterComponents';
-import Sortbybar from '../components/Sortbybar';
+import PageHeader from '../Components/componentsGlobalLayout/PageHeader';
+import ProductPageGrid from '../Components/componentsProductPage/ProductPageGrid';
+import FilterComponents from '../Components/componentsFilterproduct/FilterComponents';
+import Sortbybar from '../Components/componentsFilterproduct/Sortbybar';
 
 const Products = () => {
   const {
@@ -59,6 +59,7 @@ const Container = styled.div`
   width: 90vw;
   max-width: 1240px;
   margin: 4rem auto;
+
   @media (min-width: 800px) {
     grid-template-columns: 200px 1fr;
   }

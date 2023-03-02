@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import { single_product_url } from '../context.js';
 
 import styled from 'styled-components';
-import PageHeader from '../components/PageHeader';
+import PageHeader from '../Components/componentsGlobalLayout/PageHeader';
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../context';
 import { useParams } from 'react-router-dom';
 
-import Picturesingle from '../components/Picturesingle';
+import Picturesingle from '../Components/componentsSingleProductPage/Picturesingle';
 import Error from './Error';
-import Colorssingleproduct from '../components/colorssingleproduct.js';
-import Stars from '../components/Stars.js';
-import AddtoCart from '../components/AddtoCart';
+
+import Stars from '../Components/componentsSingleProductPage/Stars.js';
+import AddtoCart from '../Components/componentsSingleProductPage/AddtoCart';
 
 const SingleProduct = () => {
   const { loading, getSingleProduct, singleProduct, error } =
@@ -87,6 +87,7 @@ const Section = styled.section`
   color: #324d67;
   line-height: 2;
   font-size: 1rem;
+  // height: 100vh;
   &.btn {
     width: 9rem !important;
   }

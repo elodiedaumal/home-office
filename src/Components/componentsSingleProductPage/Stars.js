@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 const Stars = () => {
@@ -37,7 +37,6 @@ const StarsIcon = styled.span`
 const StarsContainer = styled.div`
   display: flex;
   gap: 0.5rem;
-
   align-items: center;
   text-align: center;
 `;

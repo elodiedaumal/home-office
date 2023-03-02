@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
-import Categories from '../components/Categories';
-import Companies from '../components/Companies';
-import Colors from '../components/Colors';
+import { useGlobalContext } from '../../context';
+import Categories from './Categories';
+import Companies from './Companies';
+import Colors from './Colors';
 import Slider from './Slider';
 
 const FilterComponents = (props) => {
@@ -85,14 +85,14 @@ const Input = styled.input`
 
 const Category = styled.h5`
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
 `;
 
 const Button = styled.button`
   background-color: #bb2525;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
   border-radius: 5px;
   width: 70%;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 
 const Companies = ({ companies }) => {
   const { setSelectCompany, selectCompany } = useGlobalContext();
@@ -39,6 +39,6 @@ const Select = styled.select`
   height: 2rem;
   padding: 0.5rem;
   letter-spacing: 1px;
-  font-size: 1rem;
+  font-size: 0.85rem;
   cusor: pointer;
 `;

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import PageHeader from '../components/PageHeader';
+import PageHeader from '../Components/componentsGlobalLayout/PageHeader';
 import styled from 'styled-components';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { TrashIcon } from '@heroicons/react/24/solid';
@@ -121,18 +121,25 @@ const CartSection = styled.section`
   margin: 2rem auto;
   max-width: 1240px;
   padding: 1rem;
+
   @media (min-width: 800px) {
     padding: 0rem;
   }
 `;
 const TotalSection = styled.section`
-  width: 95vw;
   margin: 3rem auto;
+  display: grid;
+  grid-template-columns: 300px;
   @media (min-width: 800px) {
     max-width: 1240px;
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    justify-content: end;
     font-size: 1.2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
   }
 `;
 const Titles = styled.header`
@@ -148,7 +155,7 @@ const Titles = styled.header`
 `;
 const CartDisplay = styled.div`
   display: grid;
-  grid-template-columns: 220px auto auto;
+  grid-template-columns: 200px auto auto;
   grid-template-rows: 75px;
   align-items: center;
   justify-items: center;
@@ -162,15 +169,13 @@ const CartDisplay = styled.div`
 `;
 const TotalContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  margin-top: 2rem;
+  grid-template-columns: 90vw;
   align-items: center;
   justify-items: center;
-  width: 95vw;
   gap: 1rem;
-  margin-bottom: 4rem;
   @media (min-width: 800px) {
-    max-width: 500px;
+    grid-template-columns: 1fr;
+    grid-column: 2;
   }
 `;
 const ImgInfo = styled.div`
@@ -246,11 +251,17 @@ const Button = styled.button`
   font-size: 1rem;
   color: black;
   padding-top: 8px;
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+  }
 `;
 const AddText = styled.p`
   font-size: 1.5rem;
   font-weight: bold;
   color: black;
+  @media (max-width: 400px) {
+    font-size: 1.2rem;
+  }
   @media (min-width: 800px) {
     font-size: 2rem;
   }
@@ -297,7 +308,7 @@ const SubtotalCart = styled.p`
   }
 `;
 const Img = styled.img`
-  width: 90px;
+  width: 80px;
   max-height: 75px;
   border-radius: 5px;
   @media (min-width: 800px) {
@@ -323,7 +334,7 @@ const TotalGrid = styled.div`
 `;
 const Subtotal = styled.div`
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 200px 1fr;
   font-weight: bold;
   letter-spacing: 1.5px;
   @media (min-width: 800px) {
@@ -332,35 +343,42 @@ const Subtotal = styled.div`
 `;
 const ShippingFee = styled.div`
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 200px 1fr;
   @media (min-width: 800px) {
     grid-template-columns: 250px 1fr;
   }
 `;
 const OrderTotal = styled.div`
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 200px 1fr;
   font-size: 1.5rem;
   font-weight: bold;
   margin: 1rem 0 1rem 0;
   letter-spacing: 1.5px;
   @media (min-width: 800px) {
-    font-size: 1.8rem;
     grid-template-columns: 250px 1fr;
+  }
+  @media (max-width: 400px) {
+    font-size: 1.1rem;
   }
 `;
 
 const TotalBorder = styled.div`
   border: 1px solid #bcccdc;
-  width: 100%;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem;
   border-radius: 5px;
+
+  @media (min-width: 800px) {
+    padding: 1.5rem 3rem;
+  }
 `;
 const TotalButton = styled.button`
   width: 100%;
   padding: 1rem;
   font-weight: bold;
+  max-width: 370px;
   @media (min-width: 800px) {
     font-size: 1.1rem;
+    max-width: 800px;
   }
 `;

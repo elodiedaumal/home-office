@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FaCheck } from 'react-icons/fa';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 
 const Colors = ({ colors }) => {
   const {
@@ -62,7 +62,7 @@ const Link = styled.button`
   color: #617d98;
   cursor: pointer;
   letter-spacing: 1.5px;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   margin-right: 2px;
   &.active {
     border-bottom: 2px solid #617d98;
@@ -76,8 +76,8 @@ const ColorCheckcontainer = styled.button`
   text-align: center;
   font-size: 0rem;
   color: #fff;
-  height: 1.1rem;
-  width: 1.1rem;
+  height: 0.9rem;
+  width: 0.9rem;
   border-radius: 50%;
   border: none;
   background: ${(props) => props.backgroundColor || 'black'};

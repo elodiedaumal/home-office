@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 
@@ -38,7 +38,7 @@ const ProductPageCards = (filteredProduct) => {
               ''
             )}
             {theme !== 'grid' ? (
-              <Link to={`/products/${filteredProduct.item.name}`}>
+              <Link to={`/products/${filteredProduct.item.id}`}>
                 <ButtonList className='btn '>DETAILS</ButtonList>
               </Link>
             ) : (
@@ -77,7 +77,6 @@ const Img = styled.img`
   &:hover {
     opacity: 0.5;
   }
-
   &.list {
     width: 300px;
     height: 200px;
@@ -132,7 +131,6 @@ const ProductName = styled.h5`
 
 const Grid = styled.article`
   display: block;
-
   &.list {
     display: grid;
     grid-template-columns: 1fr;

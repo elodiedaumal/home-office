@@ -1,8 +1,8 @@
 import React from 'react';
-import Custom from '../components/Custom';
-import Featured from '../components/Featured';
-import Hero from '../components/Hero';
-import Newsletter from '../components/Newsletter';
+import Custom from '../Components/componentsHomePage/Custom';
+import Featured from '../Components/componentsHomePage/Featured';
+import Hero from '../Components/componentsHomePage/Hero';
+import Newsletter from '../Components/componentsHomePage/Newsletter';
 
 const Home = () => {
   return (

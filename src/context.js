@@ -90,13 +90,12 @@ const AppProvider = ({ children }) => {
     setSelectCategory('all');
     setSelectCompany('all');
     setSelectColors('all');
-
     setFfilterColor('');
+    setSliderValue(3100);
   };
 
   const selectAllColors = (e) => {
     setSelectColors('all');
-
     setFfilterColor('');
   };
 

@@ -1,15 +1,8 @@
 import React from 'react';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  FaBars,
-  FaShoppingCart,
-  FaUserCheck,
-  FaUserPlus,
-  FaTimes,
-} from 'react-icons/fa';
-import links from '../links';
+import links from '../../links';
 import { CartLogin } from './CartLogin';
 
 const Sidebar = () => {
@@ -63,8 +56,6 @@ const SidebarWrapper = styled.aside`
 const NavLinks = styled.div`
   display: flex;
   flex-direction: column;
-  // gap: 2rem;
-
   text-transform: capitalize;
   letter-spacing: 1px;
   font-size: 1rem;

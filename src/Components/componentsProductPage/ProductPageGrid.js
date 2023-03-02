@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductPageCards from '../components/ProductPageCards';
+import ProductPageCards from './ProductPageCards';
 
 const ProductPageGrid = (props) => {
   const {

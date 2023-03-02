@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 import { FaBars } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
 
 const Sortbybar = () => {
-  const { products, theme, toggleGrid, toggleList, value, SortedProducts } =
+  const { theme, toggleGrid, toggleList, value, SortedProducts } =
     useGlobalContext();
 
   return (
@@ -24,7 +24,7 @@ const Sortbybar = () => {
           <FaBars />
         </Button>
       </div>
-      <p> </p>
+
       <Line></Line>
       <SortBy>
         <label htmlFor='sort'>Sort By</label>
@@ -48,9 +48,8 @@ const TopSort = styled.div`
   align-items: center;
   row-gap: 1rem;
   grid-template-columns: 1fr;
-
   @media (min-width: 500px) {
-    grid-template-columns: auto auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
   }
 `;
 const Button = styled.button`
@@ -72,7 +71,7 @@ const Line = styled.div`
   background: #bcccdc;
   height: 2px;
   width: 100%;
-  max-width: 35rem;
+  max-width: 45rem;
 `;
 
 const SortBy = styled.form`
@@ -85,5 +84,5 @@ const Select = styled.select`
   background: none;
   border: none;
   cusor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 
 const Categories = ({ categories }) => {
   const { setSelectCategory, handleActiveClick, selectCategory } =
@@ -47,7 +47,7 @@ const Link = styled.button`
   color: #617d98;
   cursor: pointer;
   letter-spacing: 1.5px;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   border-bottom: 0px solid blue;
   &.active {
     border-bottom: 2px solid #617d98;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 import styled from 'styled-components';
 import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -29,14 +29,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   column-gap: 2rem;
-  font-size: 1.5rem;
-
+  font-size: 1.2rem;
   .cart-icon {
     height: 1.6rem;
     margin-left: 5px;
     color: #102a42;
-
-    margin-top: 4px;
+    margin-top: 2px;
   }
 `;
 
@@ -49,15 +47,14 @@ const CartNumber = styled.span`
   background: #ab7a5f;
   border-radius: 50%;
   position: absolute;
-  height: 16px;
-  width: 16px;
+  height: 1.3rem;
+  width: 1.3rem;
   align-items: center;
   justify-content: center;
-  top: -10px;
-  right: -16px;
-  font-size: 0.75rem;
+  top: -8px;
+  right: -14px;
+  font-size: 0.7rem;
   color: #fff;
-  padding: 12px;
 `;
 
 const Cart = styled.div`

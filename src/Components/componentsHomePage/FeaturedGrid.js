@@ -1,11 +1,9 @@
 import React from 'react';
-import { useGlobalContext } from '../context';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 
 const FeaturedGrid = (filteredProduct) => {
-  // const { products, loading } = useGlobalContext();
   const { image, name, id, price } = filteredProduct.product;
   return (
     <Link to={`/products/${id}`}>

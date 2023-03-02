@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 import FeaturedGrid from './FeaturedGrid';
 
 const Featured = () => {
@@ -73,28 +73,6 @@ const Products = styled.div`
   @media (min-width: 1000px) {
     grid-template-columns: repeat(3, 1fr);
   }
-`;
-const Grid = styled.article`
-  display: block;
-`;
-
-const ProductInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 0.2rem 0.2rem 0.2rem;
-  text-transform: capitalize;
-  letter-spacing: 2px;
-  font-size: 20px;
-`;
-
-const Img = styled.img`
-  width: 100%;
-  object-fit: cover;
-  height: 225px;
-`;
-
-const Price = styled.p`
-  color: #ab7a5f;
 `;
 
 const Button = styled.button`

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useGlobalContext } from '../context';
+import React, { useState } from 'react';
+import { useGlobalContext } from '../../context';
 import styled from 'styled-components';
 
 const Picturesingle = ({ images = [{ url: '' }] }) => {
@@ -60,7 +60,6 @@ const ThumbnailContainer = styled.div`
   align-items: center;
   text-align: center;
   gap: 1rem;
-  // width: 90vw;
   @media (min-width: 1000px) {
     width: 100%;
   }
@@ -72,7 +71,6 @@ const MainPicture = styled.img`
   max-height: 600px;
   width: 90vw;
   margin-bottom: 0.3rem;
-
   @media (min-width: 1000px) {
     width: 100%;
     height: 100%;

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
 
-const AddtoCartreal = ({ singleProduct, colors = [] }) => {
-  const { deacresebtn, amountsingle, increasebtn, addToCart } =
-    useGlobalContext();
+import { FaCheck } from 'react-icons/fa';
+
+const Colorssingleproduct = ({ colors = [] }) => {
+  const { loading } = useGlobalContext();
   const [bgcolor, setBgcolor] = useState(colors[0]);
+
+  if (loading) {
+    return <div className='loading'></div>;
+  }
 
   return (
     <>
@@ -30,57 +33,11 @@ const AddtoCartreal = ({ singleProduct, colors = [] }) => {
           })}
         </ColorContainer>
       </ColorSection>
-      {singleProduct.stock === 0 ? (
-        <OutOfOrder>Product out of Order</OutOfOrder>
-      ) : (
-        <CartContainer>
-          <AddContainer>
-            <Button onClick={deacresebtn}>
-              <FaMinus />
-            </Button>
-            <AddText>{amountsingle}</AddText>
-            <Button onClick={increasebtn}>
-              <FaPlus />
-            </Button>
-          </AddContainer>
-          <Link
-            to='/cart'
-            className='btn'
-            onClick={() => addToCart(singleProduct, amountsingle, bgcolor)}
-          >
-            Add to cart
-          </Link>
-        </CartContainer>
-      )}
     </>
   );
 };
 
-export default AddtoCartreal;
-
-const AddContainer = styled.div`
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 1rem;
-`;
-const CartContainer = styled.div`
-  width: 9rem;
-  text-align: center;
-`;
-
-const Button = styled.button`
-  border: none;
-  background: none;
-  font-size: 1rem;
-
-  color: black;
-`;
-const AddText = styled.p`
-  font-size: 2rem;
-  font-weight: bold;
-  color: black;
-`;
+export default Colorssingleproduct;
 
 const InfoText = styled.p`
   font-weight: bold;
@@ -118,8 +75,4 @@ const ColorCheckcontainer = styled.button`
 const ColorContainer = styled.div`
   display: flex;
   gap: 0.5rem;
-`;
-const OutOfOrder = styled.p`
-  color: red;
-  font-weight: bold;
 `;

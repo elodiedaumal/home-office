@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactSlider from 'react-slider';
 import styled from 'styled-components';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../../context';
 
 const Slider = () => {
   const { sliderValue, setSliderValue } = useGlobalContext();
   const onSliderChange = (val) => {
     setSliderValue(val);
   };
-
+  const min = 0;
+  const max = 3100;
   return (
     <SliderContainer>
       <Price>${sliderValue}</Price>
@@ -17,13 +18,11 @@ const Slider = () => {
         trackClassName='customSlider-track'
         thumbClassName='customSlider-thumb'
         valueLabelDisplay='on'
-        defaultValue={3100}
+        defaultValue={sliderValue}
         step={11.99}
-        min={0}
-        max={3100}
+        min={min}
+        max={max}
         onChange={(val) => onSliderChange(val)}
-
-        // defaultValue={70}
       />
     </SliderContainer>
   );

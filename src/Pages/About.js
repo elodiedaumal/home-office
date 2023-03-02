@@ -1,10 +1,12 @@
 import React from 'react';
 import Img from '../images/hero-bcg.jpeg';
 import styled from 'styled-components';
+import PageHeader from '../Components/componentsGlobalLayout/PageHeader';
 
 const About = () => {
   return (
     <>
+      <PageHeader title='About' />
       <Header>
         <HeaderText>
           <Title>Home</Title> / About
@@ -61,10 +63,12 @@ const Container = styled.div`
   padding: 0 2rem;
   display: grid;
   gap: 4rem ;
+  height:100vh;
   @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
       max-width: 1240px;
        padding: 0;
+  
 `;
 
 const Underline = styled.div`

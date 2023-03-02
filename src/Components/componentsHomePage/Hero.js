@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import heroBig from '../images/hero-bcg.jpeg';
-import heroSmall from '../images/hero-bcg-2.jpeg';
+import heroBig from '../../images/hero-bcg.jpeg';
+import heroSmall from '../../images/hero-bcg-2.jpeg';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -33,11 +33,9 @@ export default Hero;
 
 const SectionDesign = styled.section`
   display: grid;
-
   max-width: 1240px;
   margin: 0rem auto;
   padding: 0 1rem;
-
   align-items: center;
   grid-template-columns: 1fr;
   height: 60vh;
@@ -90,7 +88,6 @@ const Header = styled.header`
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-
   @media (max-width: 1000px) {
     width: 95%;
     margin: 0 auto;
