@@ -66,7 +66,6 @@ const ProductInfo = styled.div`
     font-size: 1rem;
     letter-spacing: 0px;
     line-height: 1.5;
-
     margin-top: 1rem;
   }
 `;
@@ -80,11 +79,16 @@ const Img = styled.img`
     opacity: 0.5;
   }
   &.list {
-    width: 300px;
+    width: 100%;
     height: 200px;
     margin-bottom: 1rem;
     &:hover {
       opacity: 1;
+    }
+    @media (min-width: 700px) {
+    &.list {
+     width: 300px;
+    height: 200px;
     }
   }
 `;
